@@ -57,6 +57,12 @@ SURPLUS (the betting desk's plan says above ~$5k), never the roll the model plan
 |---|---|---|
 | **Pre-FOMC drift (buy SPY 1:59pm ET day before, sell 1:59pm announcement day)** | **PASSED** (85 events, +0.18%/event, t +2.6) but small and borderline (+0.14% vs an ordinary day, t 1.98). ~8 trades/yr: proves process, not income. Next: Dec 8 -> Dec 9 | `run_fomc_paper.py`, `run_round3.py` |
 | Polymarket crypto 5-min up/down, 3-streak reversal | Coinbase 52.7% (n=6,205); Polymarket 14-day BTC 52.0% (+2.6% taker, z +1.21, not sig); one 5-coin night 45%. 11/22 1-day check 61% (n=51, p=.17). **Not money as a taker. Only a MAKER (limit-order, no fee) version is worth paper.** | `strategies/pm_updown.py` |
+| Kalshi / Polymarket game moneylines vs Pinnacle (pregame) | **FAILED** 11/22: Kalshi ask within ~1c of Pinnacle fair (11,080 quotes, 0.15% clear 3c after fee); Polymarket even tighter (7,810 pairs, 0 trades) | `run_pm_sharp_study.py`, `run_pm_poly_study.py` |
+| Up/down reversal as MAKER (4 coins, 14 days, trade-through fills) | **FAILED** 11/22: -5.4c/share; filled orders win 43.6% vs 98.1% unfilled (adverse selection) | `run_pm_updown_maker.py` |
+| Kalshi hourly BTC ladders vs btc_odds model | **FAILED** 11/22: 780 trades -3.2c each; model's 83% picks won 73% (makers price better) | `run_pm_btc_ladder.py` |
+| Polymarket sports MAKER at Pinnacle fair -2c | **FAILED** 11/22: 54 fills, break-even; fills win ~2c less than Pinnacle says | `run_pm_sports_maker.py` |
+| ETF RSI(2) pullbacks (14 ETFs, 1999-2026) | **Per trade REAL** (+0.21%, t 5.6, holds post-2009, beats placebo) but **FAILED as a portfolio** (+3%/yr, Sharpe 0.30 < SPY). Next: overlay on risk parity | `run_phase2_rsi2.py` |
+| Kalshi daily-high temperature vs day-old forecast (7 cities) | **FAILED** 11/22: 728 trades -3.6c; market far better calibrated (Brier .084 vs .128) | `run_pm_weather.py` |
 | Kalshi "buy both sides at 49c" | **FAILED** (-$14 to -$28/day; lone losing leg fills 13%) | `run_kalshi_study.py` |
 | Seconds scalping QQQ (5 ideas) | **FAILED** (edge 0.03-0.15c vs ~2c spread) | `results/replay_scalp.csv` |
 | Forex: 19 variants, 9 chart-pattern families, Alex G rules | **ALL FAILED** after costs 2015-now | `results/sweep_log.csv`, `round5_patterns.csv` |
@@ -66,7 +72,7 @@ SURPLUS (the betting desk's plan says above ~$5k), never the roll the model plan
 | Phase 2 ETF trend (3/6/12m, 8 and 25 ETFs), dual momentum | **FAILED** (trend-8 beat only 82% of random-signal placebos; wide-25 and dual below SPY's Sharpe) | `results/phase2_backtest_report.txt` |
 | Forex paper ARENA (6 scalpers, OANDA practice) | running since 10/9, all far short of 100 trades; rsi_m5 t -3.2 | `run_arena.py --report` |
 
-Tally: **57+ ideas tested, 2 passed (FOMC drift; Phase 2 risk parity -- a slow allocation, not a trading edge).** That is the honest base rate for retail trading edges -- the next strategy
+Tally: **65+ ideas tested, 2 passed (FOMC drift; Phase 2 risk parity -- a slow allocation, not a trading edge).** That is the honest base rate for retail trading edges -- the next strategy
 needs a reason it should work (a structural edge: fees/rebates, slow-updating prices, a forced flow), not a chart pattern.
 
 # Where to look next (priority order)

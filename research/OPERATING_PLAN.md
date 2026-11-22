@@ -57,15 +57,34 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
 
 ## Research queue -- Phase 1 (top = next)
 
-1. **Kalshi/Polymarket event + sports markets vs a sharp reference** -- de-vigged Pinnacle prices from the betting desk's free
+1. ~~Kalshi game moneylines vs Pinnacle~~ **FAIL 11/22** (`run_pm_sharp_study.py`: Kalshi ask within ~1c of Pinnacle fair, 11,080 quotes; after fees 0.15% of quotes clear 3c). PM-2 Polymarket game moneylines vs Pinnacle **FAIL 11/22** (`run_pm_poly_study.py`: 7,810 pairs, 99th pct gap +2.1c, 0 trades). Pregame sports moneylines on BOTH exchanges sit on the sharp line; only a speed (news) edge could remain.
+   **Kalshi/Polymarket event + sports markets vs a sharp reference** -- de-vigged Pinnacle prices from the betting desk's free
    pipeline (`../sports betting/betting/freeodds.py`, `_polymarket.py`, Kalshi public API). Edge = prediction-market prices that
    lag the sharp line. This is the betting desk's proven edge, moved to a trading venue. Backtest needs archived market prices
    (Kalshi/Polymarket price history) joined to pregame sharp prices (pregame ONLY -- live prices leak).
-2. **Polymarket 5-min up/down streak reversal, 14-30 days, all coins** (`strategies/pm_updown.py backfill <coin> <days>`), then
+2. ~~Up/down reversal, 4 coins x 14 days, maker + taker~~ **FAIL 11/22** (`run_pm_updown_maker.py`): maker -5.4c/share (filled 43.6% win vs unfilled 98.1% -- adverse selection); taker +1.7c but first half t 0.30 and dead after a half-cent of spread. Closed unless new evidence.
+   **Polymarket 5-min up/down streak reversal, 14-30 days, all coins** (`strategies/pm_updown.py backfill <coin> <days>`), then
    **the MAKER version** (limit at/below the open price, fills only when price trades through; no fee, possible rebates).
-3. **Crypto strike markets vs BTC odds** -- `strategies/btc_odds.py` P(BTC above X at T) vs Kalshi KXBTC / Polymarket strikes.
+3. ~~Crypto strike markets vs BTC odds~~ **FAIL 11/22** (`run_pm_btc_ladder.py`: 780 trades, -3.2c each; model expected 83% wins, got 73% -- Kalshi's makers out-price our vol model).
+   **Crypto strike markets vs BTC odds** -- `strategies/btc_odds.py` P(BTC above X at T) vs Kalshi KXBTC / Polymarket strikes.
 4. **Pre-FOMC drift** on paper each meeting (`run_fomc_paper.py --wait`; next 12/8 -> 12/9).
 5. **Forex arena** keeps collecting toward 100 trades per strategy (`run_arena.py`); report only on a verdict.
+
+### New ideas 11/22 (queue #1-3 all failed; ranked by evidence-it-could-work x trades/day, all free data)
+6. ~~PM-5~~ **FAIL 11/22** (54 fills, +$0.15; filled 42.6% won vs 44.8% expected = adverse selection eats the 2c). **PM-5 Polymarket sports MAKER vs Pinnacle fair** -- rest a bid 2c under Pinnacle's de-vigged price, no fee + 15% rebate. Testable NOW on the
+   208 cached games with data-api v2 trades (trade-through fills). Known risk: adverse selection (PM-3 lesson: 43.6% vs 98.1%).
+7. ~~Kalshi daily highs vs forecast~~ **FAIL 11/22** (`run_pm_weather.py`: 728 trades -3.6c; market Brier 0.084 beats the day-old forecast's 0.128).
+   **Kalshi daily-high temperature markets vs free forecasts** (Open-Meteo historical-forecast API, NWS) -- retail-priced, many markets/day, the
+   reference is a professional model nobody pays for. Needs a forecast archive (Open-Meteo has one, free, no key).
+8. **COLLECTING on GitHub since 11/22** (`.github/workflows/speed.yml`: `collect_speed.py run 335` every 6h, 2-min passes, deduped gzip -> collected/speed/, PM-7 pre-declared). User 11/22: everything runs on GitHub so it works with the PC off. Test at >= 100 signals (~mid-Dec).
+   **News-speed collector**: Pinnacle + Kalshi/Polymarket game prices every few minutes, forward; measure how long exchanges lag a >=3c sharp move.
+   The archive tested (5-min-fresh) shows no lag on average; the edge, if any, is in the first minutes after news. Collect 3-4 weeks, then test.
+9. ~~P2-F RSI(2) ETFs~~ **FAIL as a portfolio 11/22** (`run_phase2_rsi2.py`): per trade +0.21%, t 5.6, survives post-2009 and the placebo; but 14 slots = +3%/yr, Sharpe 0.30 < SPY. P2-G overlay on the risk-parity core: back-of-envelope says NO -- funding a dip from the core costs a 2nd round trip (0.2%) + the core's own ~0.14%/5 days, > the dip's +0.21%; funded only from the idle 10% buffer it adds ~+0.5%/yr of the account. LOW priority.
+   **ETF RSI(2) swing mean-reversion** (Phase 2 queue #4, on ETFs so no survivorship) -- published 2008, so the second half doubles as a decay test.
+11. **PM-8 longshot bias on Kalshi** (all categories): do 1-10c YES contracts win less often than their price? If so, BUY NO on them. The classic
+    favorite-longshot bias; plentiful settled markets + candles, free. NEXT.
+12. **PM-9 'near-certain' carry on Polymarket**: buy 95-99c outcomes days before resolution; does the hit rate beat the price after the rare blowups?
+10. Polymarket 5-min up/down late-window lag vs Coinbase (needs second-level data, bots compete) -- lowest.
 
 ## Research queue -- Phase 2 (one item per week, in parallel)
 
@@ -76,7 +95,7 @@ tsmom_wide25 FAIL, dual_momentum FAIL. Do NOT run run_phase2.py locally -- the A
 
 1. ~~Time-series trend following on liquid ETFs~~ DONE 11/22 (FAIL, see above). **Time-series trend following on liquid ETFs** (SPY, QQQ, TLT, GLD, USO, EFA, ...): 3-12 month momentum with a volatility
    target, monthly rebalance, 20+ years of free daily data (`bot/data.py`, `data/etf_daily.csv`), costs in, walk-forward by decade.
-2. **Cross-asset trend on futures proxies** (rates, commodities, currencies via ETFs) -- the classic CTA portfolio, small version.
+2. ~~Cross-asset trend~~ DONE 11/22 = tsmom_wide25 (25 ETFs incl. currencies/commodities) FAIL. **Cross-asset trend on futures proxies** (rates, commodities, currencies via ETFs) -- the classic CTA portfolio, small version.
 3. ~~Dual momentum / risk-parity core~~ DONE 11/22 (dual FAIL, risk parity PASS -> paper). **Dual momentum / risk-parity core** as the "Phase 3 engine" baseline: what it does vs plain buy-and-hold, drawdowns included.
 4. **Swing mean-reversion on large caps** (2-10 day holds, RSI(2)-style) with realistic costs and the PDT rule in mind.
 Each must beat buy-and-hold on risk-adjusted terms (Sharpe and worst drawdown), not just make money.
