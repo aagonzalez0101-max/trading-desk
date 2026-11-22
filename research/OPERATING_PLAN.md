@@ -4,6 +4,8 @@ Written 2026-11-22 by the betting-desk session. The user wants this desk to run 
 every idea goes through hard checks, and the moment something passes it goes to PAPER trading with fake money -- automatically,
 logged, graded, reported. Real money is NOT part of this plan; the user decides that later himself (guard.json).
 
+**Cloud research agent (11/22):** a daily claude.ai routine (7am CT, https://claude.ai/code/routines/trig_01LeR5Rz1ieGchg2dwRggPHW) runs this loop and logs to `results/RESEARCH_LOG.md`.
+
 ## The loop (repeat until a strategy is paper-trading and passing, then keep the loop going for the next one)
 
 **Stage 0 -- Start of session (5 min)**
@@ -82,7 +84,7 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
 9. ~~P2-F RSI(2) ETFs~~ **FAIL as a portfolio 11/22** (`run_phase2_rsi2.py`): per trade +0.21%, t 5.6, survives post-2009 and the placebo; but 14 slots = +3%/yr, Sharpe 0.30 < SPY. P2-G overlay on the risk-parity core: back-of-envelope says NO -- funding a dip from the core costs a 2nd round trip (0.2%) + the core's own ~0.14%/5 days, > the dip's +0.21%; funded only from the idle 10% buffer it adds ~+0.5%/yr of the account. LOW priority.
    **ETF RSI(2) swing mean-reversion** (Phase 2 queue #4, on ETFs so no survivorship) -- published 2008, so the second half doubles as a decay test.
 11. **PM-8 longshot bias on Kalshi** (all categories): do 1-10c YES contracts win less often than their price? If so, BUY NO on them. The classic
-    favorite-longshot bias; plentiful settled markets + candles, free. NEXT.
+    favorite-longshot bias; plentiful settled markets + candles, free. **IN PROGRESS (local session 11/22, `run_pm_longshot.py`) -- cloud runs: skip it unless its verdict row is still missing from sweep_log.csv on 11/24.**
 12. **PM-9 'near-certain' carry on Polymarket**: buy 95-99c outcomes days before resolution; does the hit rate beat the price after the rare blowups?
 10. Polymarket 5-min up/down late-window lag vs Coinbase (needs second-level data, bots compete) -- lowest.
 
