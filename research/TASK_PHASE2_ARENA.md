@@ -9,6 +9,14 @@ graded on a schedule, while he works Phase 1 (PrizePicks) hands-on in the bettin
 - Secrets he adds in GitHub (Settings -> Secrets -> Actions): ALPACA_API_KEY, ALPACA_SECRET_KEY (paper keys, same as .env),
   optional NOTIFY_JSON (contents of notify.json). Never commit .env or notify.json.
 
+## Paper accounts (user 11/22, Alpaca allows 3)
+- EXISTING account (keys = ALPACA_API_KEY/ALPACA_SECRET_KEY in .env): keeps the pre-FOMC drift test -- don't trade Phase 2 in it.
+- NEW "Scar OGC" = Phase 2 Starter, $10,000 -> secrets ALPACA_KEY_10K / ALPACA_SECRET_10K.
+- NEW "Full-Time Scale", $100,000 -> secrets ALPACA_KEY_100K / ALPACA_SECRET_100K. Same strategies, real fills at living size.
+Each passing strategy gets a sleeve in BOTH new accounts (same weights, scaled). Neither syncs to a live balance.
+- The OANDA practice token in .env has returned 401 since 2026-10-20: the forex arena has NOT been running. Ask the user for a
+  new practice token only if he wants forex back (lowest priority).
+
 ## Build, in order
 1. **Historical tests first (20+ years, free daily data, costs in, walk-forward by decade, `core/backtest.py` bar + must beat
    buy-and-hold on Sharpe AND worst drawdown).** Candidates (pre-declare each in results/sweep_log.csv):
