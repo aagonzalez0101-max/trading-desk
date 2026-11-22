@@ -11,9 +11,11 @@ graded on a schedule, while he works Phase 1 (PrizePicks) hands-on in the bettin
 
 ## Paper accounts (user 11/22, Alpaca allows 3)
 - EXISTING account (keys = ALPACA_API_KEY/ALPACA_SECRET_KEY in .env): keeps the pre-FOMC drift test -- don't trade Phase 2 in it.
-- NEW "Scar OGC" = Phase 2 Starter, $10,000 -> secrets ALPACA_KEY_10K / ALPACA_SECRET_10K.
-- NEW "Full-Time Scale", $100,000 -> secrets ALPACA_KEY_100K / ALPACA_SECRET_100K. Same strategies, real fills at living size.
-Each passing strategy gets a sleeve in BOTH new accounts (same weights, scaled). Neither syncs to a live balance.
+- NEW "Scar OGC" = Real-Start, $500 -> secrets ALPACA_KEY_500 / ALPACA_SECRET_500. What the first real transfer would do:
+  fractional shares, $1 minimums, rounding -- small-account frictions show up here.
+- NEW "Phase 2 Main", $10,000 -> secrets ALPACA_KEY_10K / ALPACA_SECRET_10K. The main record.
+- The $100,000 "full-time scale" view is COMPUTED from the $10k sleeves (liquid ETFs fill the same at any paper size) -- no account.
+Each passing strategy gets a sleeve in BOTH new accounts (same weights, scaled to $500 and $10k). Neither syncs to a live balance.
 - The OANDA practice token in .env has returned 401 since 2026-10-20: the forex arena has NOT been running. Ask the user for a
   new practice token only if he wants forex back (lowest priority).
 
@@ -26,8 +28,8 @@ Each passing strategy gets a sleeve in BOTH new accounts (same weights, scaled).
    d. Risk parity (inverse-vol weights, monthly).
    e. Benchmark: 100% SPY buy-and-hold, and 60/40.
    Only the ones that pass go into the arena. Record every result either way.
-2. **Arena runner `run_phase2.py`**: one Alpaca PAPER account, each strategy gets a virtual sleeve (`bot/ledger.py`, $10,000 each,
-   plus a $100,000 "full-time scale" shadow that's computed, not traded). Daily after the close: compute target weights, trade the
+2. **Arena runner `run_phase2.py`**: one Alpaca PAPER account, each strategy gets a virtual sleeve per account (`bot/ledger.py`;
+   $500 Real-Start and $10,000 Main) plus a computed $100,000 "full-time scale" shadow. Daily after the close: compute target weights, trade the
    sleeve difference in whole dollars (fractional shares), log every fill to `results/trades.jsonl` via `core/ledger.py`
    (PAPER/STRATEGY), mark-to-market each sleeve to `results/phase2_equity.csv`.
 3. **GitHub Action `.github/workflows/phase2.yml`**: cron weekdays ~21:30 UTC (after the US close), python 3.12, `pip install -r
