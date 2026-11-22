@@ -1,0 +1,314 @@
+<meta charset="utf-8">
+<title>Weekly Trend Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --line:#DCE1E8; --ink:#16202E; --muted:#5B6778;
+  --accent:#2F5BD3; --accent-soft:#E4EBFB;
+  --good:#1B7F52; --good-soft:#DDF1E6; --bad:#B93434; --bad-soft:#F8E0E0; --warn:#9A6414; --warn-soft:#F7ECD8;
+  --grid:#E7EBF0;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E131A; --surface:#151C26; --line:#263141; --ink:#E4E9F0; --muted:#8F9CAE;
+    --accent:#86A2FF; --accent-soft:#1D2744;
+    --good:#4FC48A; --good-soft:#15301F; --bad:#F07A7A; --bad-soft:#3A1C1E; --warn:#E3AE5B; --warn-soft:#352812;
+    --grid:#1E2733;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E131A; --surface:#151C26; --line:#263141; --ink:#E4E9F0; --muted:#8F9CAE;
+  --accent:#86A2FF; --accent-soft:#1D2744;
+  --good:#4FC48A; --good-soft:#15301F; --bad:#F07A7A; --bad-soft:#3A1C1E; --warn:#E3AE5B; --warn-soft:#352812;
+  --grid:#1E2733;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:grid;gap:28px}
+h1,h2{font-family:var(--cond);font-weight:600;margin:0;text-wrap:balance;letter-spacing:.005em}
+h1{font-size:28px;line-height:1.15}
+h2{font-size:19px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font:500 11px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+header .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.plain{background:transparent;color:var(--muted);border:1px solid var(--line)}
+section{display:grid;gap:14px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.kpi{padding:16px 18px;display:grid;gap:6px;border-left:1px solid var(--line)}
+.kpi:first-child{border-left:0}
+.kpi .v{font:500 24px/1.1 var(--mono);font-variant-numeric:tabular-nums}
+.kpi .s{font-size:13px}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi:nth-child(3){border-left:0}.kpi:nth-child(n+3){border-top:1px solid var(--line)}}
+.chart{padding:14px 12px 8px}
+.chart svg{display:block;width:100%;height:auto}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.empty{padding:22px 18px;color:var(--muted)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font:500 11px/1.2 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--grid);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+td.why{min-width:260px;color:var(--muted);font-size:13px}
+.sig td{vertical-align:middle}
+.etf{font:600 14px var(--mono)}
+.etf small{display:block;font:400 12px var(--sans);color:var(--muted)}
+.pips{display:flex;gap:6px}
+.pip{width:26px;height:22px;border-radius:4px;display:grid;place-items:center;font:600 12px var(--mono)}
+.pip.y{background:var(--good-soft);color:var(--good)}
+.pip.n{background:var(--bad-soft);color:var(--bad)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted)}
+.legend b{font:600 12px var(--mono);color:var(--ink);margin-right:4px}
+.calc{display:grid;grid-template-columns:280px minmax(0,1fr);gap:0}
+.calc .inputs{padding:18px;display:grid;gap:14px;border-right:1px solid var(--line);align-content:start}
+.calc .out{padding:18px;display:grid;gap:14px;align-content:start}
+@media (max-width:760px){.calc{grid-template-columns:1fr}.calc .inputs{border-right:0;border-bottom:1px solid var(--line)}}
+label{display:grid;gap:5px;font-size:13px;color:var(--muted)}
+input[type=number]{font:500 15px var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.answer{font:600 22px/1.25 var(--cond)}
+.answer .num{font-weight:500}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.facts div{display:grid;gap:4px}
+.facts .v{font:500 16px var(--mono)}
+@media (max-width:520px){.facts{grid-template-columns:1fr 1fr}}
+.rules{padding:18px 20px;display:grid;gap:10px;font-size:14px;max-width:none}
+.rules p{margin:0;max-width:70ch}
+.rules ol{margin:0;padding-left:20px;display:grid;gap:4px;max-width:70ch}
+footer{font-size:13px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div style="display:grid;gap:6px">
+      <span class="eyebrow">$100 paper account · weekly ETF trend + pullback</span>
+      <h1>Weekly Trend Ledger</h1>
+    </div>
+    <div class="meta"><span class="chip warn">Paper money</span><span class="muted" id="updated"></span></div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section>
+    <div class="sec-head"><h2>Account value</h2><span class="muted" id="eq-note"></span></div>
+    <div class="panel chart" id="eq-chart"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2 id="sig-title">This week's signals</h2><span id="sig-verdict"></span></div>
+    <div class="panel scroll"><table class="sig" id="sig-table"></table></div>
+    <div class="legend">
+      <span><b>1</b>Above 40-week avg</span><span><b>2</b>Up over 12 months</span><span><b>3</b>Dipped to 10-week avg lately</span><span><b>4</b>Back above 10-week avg</span><span><b>5</b>Up on the week</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Holdings</h2><span class="muted" id="pos-note"></span></div>
+    <div class="panel scroll" id="positions"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Trade log</h2><span class="muted">STRATEGY = picked by the rules · MANUAL = your pick · TEST = bought and sold back</span></div>
+    <div class="panel scroll" id="trades"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Path to a living</h2><span class="muted">How long until investments could replace a paycheck</span></div>
+    <div class="panel calc">
+      <div class="inputs">
+        <label for="c-start">Starting money ($)<input type="number" id="c-start" min="0" step="50"></label>
+        <label for="c-monthly">Added every month ($)<input type="number" id="c-monthly" min="0" step="50" value="500"></label>
+        <label for="c-return">Yearly return (%)<input type="number" id="c-return" min="0" max="30" step="0.5" value="7"></label>
+        <label for="c-goal">Yearly income you want ($)<input type="number" id="c-goal" min="0" step="1000" value="50000"></label>
+        <label for="c-wd">Safe yearly withdrawal (%)<input type="number" id="c-wd" min="1" max="10" step="0.5" value="4"></label>
+      </div>
+      <div class="out">
+        <div class="answer" id="c-answer"></div>
+        <div class="facts" id="c-facts"></div>
+        <div class="chart" id="c-chart" style="padding:0"></div>
+        <div class="scroll"><table id="c-table"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The rules</h2>
+    <div class="panel rules">
+      <p>Checked once a week on Friday's close, traded the next Monday. Eight ETFs: SPY (US stocks), EFA (international stocks), EEM (emerging markets), TLT (long bonds), IEF (mid bonds), GLD (gold), DBC (commodities), VNQ (real estate).</p>
+      <ol>
+        <li>Buy only when all five checks pass. At most one new buy a week: the ETF with the biggest 12-month gain.</li>
+        <li>Hold up to 3 ETFs, each a third of the account.</li>
+        <li>Sell when the weekly close drops below the 40-week average.</li>
+      </ol>
+      <p class="muted">Weeks with no trade are normal. Judge the strategy over months, on STRATEGY trades only.</p>
+    </div>
+  </section>
+
+  <footer>Built by update_tracker.py from the Alpaca paper account and the bot's logs. Same data as trading_tracker.xlsx.</footer>
+</div>
+
+<script id="data" type="application/json">{"updated": "2026-10-08 21:59", "start_equity": 100.0, "plan_size": 100.0, "slots": 3, "cycle": 1, "cycle_started": "2026-09-28", "cycles": [], "equity": [{"date": "2026-09-28", "equity": 100.0, "cash": 100.0}, {"date": "2026-09-29", "equity": 99.9984, "cash": 66.6667}, {"date": "2026-09-30", "equity": 100.0095, "cash": 66.6666}, {"date": "2026-10-02", "equity": 99.7506, "cash": 66.6666}, {"date": "2026-10-05", "equity": 99.9184, "cash": 66.6666}, {"date": "2026-10-08", "equity": 99.4949, "cash": 66.6667}], "positions": [{"symbol": "EFA", "qty": 0.319651994629, "avg": 104.28000000000002, "price": 102.7, "type": "MANUAL"}], "trades": [{"time": "2026-09-29 14:15", "type": "TEST", "action": "buy", "symbol": "SPY", "qty": 0.001309360449, "price": 763.724, "status": "filled", "why": "plumbing test (scaled 1/1000 from the $100k account)"}, {"time": "2026-09-29 14:15", "type": "TEST", "action": "sell", "symbol": "SPY", "qty": 0.001309360449, "price": 763.71, "status": "filled", "why": "plumbing test (scaled 1/1000 from the $100k account)"}, {"time": "2026-09-29 14:15", "type": "MANUAL", "action": "buy", "symbol": "EFA", "qty": 0.319651994629, "price": 104.28, "status": "filled", "why": "manual test position (near-miss signal week of 2026-09-25), not picked by the rules (scaled 1/1000 from the $100k account)"}], "signals": {"week": "2026-10-02", "rows": [{"etf": "SPY", "close": 769.6400146484375, "prev": 771.3499755859375, "sma40": 718.7700332641601, "mom12": 0.1624802059201964, "ema10": 762.6313497075115, "dipped": false, "held": false}, {"etf": "EFA", "close": 103.95999908447266, "prev": 105.55999755859375, "sma40": 101.95446853637695, "mom12": 0.13082382262534797, "ema10": 105.72189977992758, "dipped": true, "held": true}, {"etf": "EEM", "close": 67.66999816894531, "prev": 67.9800033569336, "sma40": 63.21333484649658, "mom12": 0.27226930509919445, "ema10": 67.10934255591539, "dipped": false, "held": false}, {"etf": "TLT", "close": 77.4800033569336, "prev": 79.00182342529297, "sma40": 83.6338758468628, "mom12": -0.09292948383634092, "ema10": 80.63695256978514, "dipped": true, "held": false}, {"etf": "IEF", "close": 89.05000305175781, "prev": 89.69062805175781, "sma40": 92.7682077407837, "mom12": -0.039300807567753115, "ema10": 90.96853076389942, "dipped": true, "held": false}, {"etf": "GLD", "close": 380.1400146484375, "prev": 393.4100036621094, "sma40": 416.09375152587893, "mom12": 0.0629124233263374, "ema10": 395.21009578658584, "dipped": true, "held": false}, {"etf": "DBC", "close": 32.540000915527344, "prev": 32.619998931884766, "sma40": 28.39800000190735, "mom12": 0.50089995060147, "ema10": 31.549806342584127, "dipped": false, "held": false}, {"etf": "VNQ", "close": 89.5, "prev": 90.98999786376953, "sma40": 93.10556831359864, "mom12": 0.01602857469504282, "ema10": 93.7616584986782, "dipped": true, "held": false}]}}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('data').textContent);
+const NAMES = {SPY:'US stocks',EFA:'Intl stocks',EEM:'Emerging mkts',TLT:'Long bonds',IEF:'Mid bonds',GLD:'Gold',DBC:'Commodities',VNQ:'Real estate'};
+const $ = id => document.getElementById(id);
+const usd = (v, d=2) => (v<0?'-':'') + '$' + Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct = (v, d=2) => (v>0?'+':'') + (v*100).toFixed(d) + '%';
+const sign = v => v>0 ? 'pos' : v<0 ? 'neg' : '';
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+$('updated').textContent = 'Updated ' + D.updated + ' ET';
+
+// KPIs
+const eq = D.equity.length ? D.equity[D.equity.length-1].equity : D.start_equity;
+const cash = D.equity.length ? D.equity[D.equity.length-1].cash : D.start_equity;
+const pnl = eq - D.start_equity, ret = pnl / D.start_equity;
+const kpis = [
+  ['Account value', usd(eq), 'Started at ' + usd(D.start_equity, 0), ''],
+  ['Total profit / loss', usd(pnl), pct(ret), sign(pnl)],
+  ['Cash (not invested)', usd(cash), Math.round(cash/eq*100) + '% of account', ''],
+  ['Cycle', '#' + D.cycle, 'Since ' + D.cycle_started + (D.cycles.length ? ' · ' + D.cycles.length + ' finished' : ' · first run'), ''],
+];
+$('kpis').innerHTML = kpis.map(([k,v,s,c]) => `<div class="kpi"><span class="eyebrow">${k}</span><span class="v ${c}">${v}</span><span class="s muted ${c}">${s}</span></div>`).join('');
+
+// Line chart helper
+function lineChart(el, pts, opts){
+  const W=720, H=opts.h||220, L=64, R=14, T=12, B=26;
+  const xs = pts.map(p=>p.x), ys = pts.map(p=>p.y).concat(opts.extraY||[]);
+  let y0=Math.min(...ys), y1=Math.max(...ys);
+  if (y1-y0 < 1e-9){ const pad = Math.abs(y0)*0.01 || 1; y0-=pad; y1+=pad; }
+  const pad=(y1-y0)*0.08; y0-=pad; y1+=pad;
+  const x0=xs[0], x1=xs[xs.length-1]===x0 ? x0+1 : xs[xs.length-1];
+  const X=v=>L+(v-x0)/(x1-x0)*(W-L-R), Y=v=>T+(1-(v-y0)/(y1-y0))*(H-T-B);
+  const ticks=[]; for(let i=0;i<=4;i++) ticks.push(y0+(y1-y0)*i/4);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.label)}">`;
+  ticks.forEach(t=>{s+=`<line x1="${L}" x2="${W-R}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--grid)" stroke-width="1"/><text x="${L-8}" y="${Y(t)+4}" text-anchor="end">${opts.fmtY(t)}</text>`;});
+  (opts.xLabels||[]).forEach(([v,lab])=>{s+=`<text x="${X(v)}" y="${H-6}" text-anchor="middle">${esc(lab)}</text>`;});
+  if (opts.target!=null){ s+=`<line x1="${L}" x2="${W-R}" y1="${Y(opts.target)}" y2="${Y(opts.target)}" stroke="var(--warn)" stroke-dasharray="5 4" stroke-width="1.5"/><text x="${W-R}" y="${Y(opts.target)-6}" text-anchor="end" style="fill:var(--warn)">${esc(opts.targetLabel)}</text>`; }
+  const path = pts.map((p,i)=>(i?'L':'M')+X(p.x).toFixed(1)+' '+Y(p.y).toFixed(1)).join(' ');
+  if (pts.length>1) s+=`<path d="${path} L${X(pts[pts.length-1].x).toFixed(1)} ${H-B} L${X(pts[0].x).toFixed(1)} ${H-B} Z" fill="var(--accent)" fill-opacity="0.10"/>`;
+  s+=`<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
+  const e=pts[pts.length-1]; s+=`<circle cx="${X(e.x)}" cy="${Y(e.y)}" r="4" fill="var(--accent)"/>`;
+  el.innerHTML = s + '</svg>';
+}
+
+// Equity chart
+if (D.equity.length >= 2){
+  const pts = D.equity.map((r,i)=>({x:i,y:r.equity}));
+  const n=D.equity.length, idx=[0,Math.floor((n-1)/2),n-1].filter((v,i,a)=>a.indexOf(v)===i);
+  lineChart($('eq-chart'), pts, {label:'Account value over time', fmtY:v=>usd(v,0), xLabels: idx.map(i=>[i, D.equity[i].date.slice(5)])});
+  $('eq-note').textContent = n + ' daily snapshots';
+} else {
+  $('eq-chart').outerHTML = `<div class="panel empty">The chart starts once there are two days of history. Today: ${usd(eq)}. Each refresh adds one point.</div>`;
+}
+
+// Signals
+const S = D.signals;
+$('sig-title').textContent = 'Signals from the ' + S.week + ' close';
+const rows = S.rows.map(r => {
+  const c=[r.close>r.sma40, r.mom12>0, r.dipped, r.close>r.ema10, r.close>r.prev];
+  return {...r, checks:c, pass:c.every(Boolean) && !r.held};
+});
+const cands = rows.filter(r=>r.pass).sort((a,b)=>b.mom12-a.mom12);
+const pick = cands[0];
+$('sig-verdict').innerHTML = pick ? `<span class="chip good">Buy signal: ${pick.etf}</span>` : `<span class="chip plain">No buy this week</span>`;
+$('sig-table').innerHTML = `<thead><tr><th>ETF</th><th>Checks</th><th class="r">Close</th><th class="r">40-wk avg</th><th class="r">10-wk avg</th><th class="r">12-month</th><th>Status</th></tr></thead><tbody>` +
+  rows.map(r=>{
+    const miss = r.checks.filter(x=>!x).length;
+    let st;
+    if (r.held) st = r.close < r.sma40 ? '<span class="chip bad">Held · sell</span>' : '<span class="chip">Held</span>';
+    else if (pick && r.etf===pick.etf) st = '<span class="chip good">Buy</span>';
+    else if (r.pass) st = '<span class="chip plain">Passes, not strongest</span>';
+    else if (miss===1) st = '<span class="chip warn">1 check away</span>';
+    else st = `<span class="chip plain">${miss} checks fail</span>`;
+    return `<tr><td class="etf">${r.etf}<small>${NAMES[r.etf]||''}</small></td>
+      <td><div class="pips">${r.checks.map((x,i)=>`<span class="pip ${x?'y':'n'}" title="${['Above 40-week avg','Up over 12 months','Dipped lately','Back above 10-week avg','Up on the week'][i]}: ${x?'yes':'no'}">${i+1}</span>`).join('')}</div></td>
+      <td class="r num">${r.close.toFixed(2)}</td><td class="r num">${r.sma40.toFixed(2)}</td><td class="r num">${r.ema10.toFixed(2)}</td>
+      <td class="r num ${sign(r.mom12)}">${pct(r.mom12,1)}</td><td>${st}</td></tr>`;
+  }).join('') + '</tbody>';
+
+// Positions
+if (D.positions.length){
+  let totU=0;
+  $('positions').innerHTML = `<table><thead><tr><th>ETF</th><th>Type</th><th class="r">Shares</th><th class="r">Avg cost</th><th class="r">Price now</th><th class="r">Value</th><th class="r">Profit / loss</th></tr></thead><tbody>` +
+    D.positions.map(p=>{
+      const cost=p.qty*p.avg, val=p.qty*p.price, u=val-cost; totU+=u;
+      return `<tr><td class="etf">${p.symbol}<small>${NAMES[p.symbol]||''}</small></td><td><span class="chip ${p.type==='MANUAL'?'warn':''}">${p.type}</span></td>
+        <td class="r num">${p.qty.toFixed(4)}</td><td class="r num">${usd(p.avg)}</td><td class="r num">${usd(p.price)}</td>
+        <td class="r num">${usd(val)}</td><td class="r num ${sign(u)}">${usd(u)} <span class="muted">(${pct(cost?u/cost:0)})</span></td></tr>`;
+    }).join('') + '</tbody></table>';
+  $('pos-note').textContent = D.positions.length + ' of ' + D.slots + ' slots used';
+} else {
+  $('positions').innerHTML = `<div class="empty">Nothing held. All ${usd(cash,0)} is in cash.</div>`;
+  $('pos-note').textContent = '0 of ' + D.slots + ' slots used';
+}
+
+// Trades
+if (D.trades.length){
+  $('trades').innerHTML = `<table><thead><tr><th>When (ET)</th><th>Type</th><th>Action</th><th>ETF</th><th class="r">Shares</th><th class="r">Price</th><th class="r">Value</th><th>Why</th></tr></thead><tbody>` +
+    D.trades.slice().reverse().map(t=>{
+      const v = (t.qty!=null && t.price!=null) ? usd(t.qty*t.price) : '';
+      const typeCls = t.type==='STRATEGY' ? '' : t.type==='MANUAL' ? 'warn' : 'plain';
+      const act = t.action==='buy' ? '<span class="chip good">Buy</span>' : t.action==='sell' ? '<span class="chip bad">Sell</span>' : `<span class="chip plain">${esc(t.action)}</span>`;
+      return `<tr><td class="num" style="white-space:nowrap">${esc(t.time)}</td><td><span class="chip ${typeCls}">${t.type}</span></td><td>${act}</td><td class="etf">${esc(t.symbol)}</td>
+        <td class="r num">${t.qty!=null?t.qty.toFixed(4):''}</td><td class="r num">${t.price!=null?usd(t.price):''}</td><td class="r num">${v}</td><td class="why">${esc(t.why)}${t.status && t.status!=='filled' ? ' · '+esc(t.status) : ''}</td></tr>`;
+    }).join('') + '</tbody></table>';
+} else {
+  $('trades').innerHTML = `<div class="empty">No orders yet. The first ones appear after run_test_trade.py or the weekly bot places a trade.</div>`;
+}
+
+// Path-to-a-living calculator
+const ids=['c-start','c-monthly','c-return','c-goal','c-wd'];
+$('c-start').value = D.plan_size;
+try { const saved = JSON.parse(localStorage.getItem('living-calc')||'{}'); ids.forEach(id=>{ if (saved[id]!=null) $(id).value = saved[id]; }); } catch(e){}
+
+function years(start, monthly, r, target){
+  const m=Math.pow(1+r,1/12)-1; let b=start, mo=0; const series=[{x:0,y:b}];
+  while (b<target && mo<600){ b=b*(1+m)+monthly; mo++; if (mo%12===0) series.push({x:mo/12,y:b}); }
+  if (mo%12) series.push({x:mo/12,y:b});
+  return {months: b>=target ? mo : null, series, end:b};
+}
+function fmtYears(mo){ if (mo==null) return 'more than 50 years'; const y=Math.floor(mo/12), m=mo%12; return (y? y+' yr' : '') + (m? (y?' ':'')+m+' mo' : '') || '0 mo'; }
+
+function calc(){
+  const v = Object.fromEntries(ids.map(id=>[id, Math.max(0, parseFloat($(id).value)||0)]));
+  try { localStorage.setItem('living-calc', JSON.stringify(v)); } catch(e){}
+  const r=v['c-return']/100, wd=Math.max(v['c-wd'],0.1)/100, target=v['c-goal']/wd;
+  const res = years(v['c-start'], v['c-monthly'], r, target);
+  const contributed = v['c-start'] + v['c-monthly']*(res.months ?? 600);
+  $('c-answer').innerHTML = res.months!=null
+    ? `About <span class="num">${fmtYears(res.months)}</span> to reach <span class="num">${usd(target,0)}</span>, enough to pull <span class="num">${usd(v['c-goal'],0)}</span> a year.`
+    : `At these numbers you don't reach <span class="num">${usd(target,0)}</span> within 50 years. Raise the monthly amount.`;
+  $('c-facts').innerHTML = [
+    ['Target balance', usd(target,0)],
+    ['You put in', usd(contributed,0)],
+    ['Growth did the rest', usd(Math.max(0,(res.months!=null?target:res.end)-contributed),0)],
+  ].map(([k,x])=>`<div><span class="eyebrow">${k}</span><span class="v">${x}</span></div>`).join('');
+  const last = res.series[res.series.length-1].x;
+  lineChart($('c-chart'), res.series, {h:200, label:'Projected balance', target, targetLabel:'Goal '+usd(target,0), extraY:[target],
+    fmtY: x => x>=1e6 ? '$'+(x/1e6).toFixed(1)+'M' : '$'+Math.round(x/1000)+'k',
+    xLabels: [[0,'now'],[last/2,'yr '+Math.round(last/2)],[last,'yr '+Math.round(last)]]});
+  const opts=[250,500,1000,2000,3000];
+  $('c-table').innerHTML = `<thead><tr><th>If you add each month</th><th class="r">Time to goal</th></tr></thead><tbody>` +
+    opts.map(o=>{ const x=years(v['c-start'],o,r,target); return `<tr${o===v['c-monthly']?' style="font-weight:600"':''}><td class="num">${usd(o,0)}</td><td class="r num">${fmtYears(x.months)}</td></tr>`; }).join('') + '</tbody>';
+}
+ids.forEach(id=>$(id).addEventListener('input', calc));
+calc();
+})();
+</script>

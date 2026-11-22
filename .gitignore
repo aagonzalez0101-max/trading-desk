@@ -1,0 +1,8 @@
+.env
+notify.json
+guard.json
+__pycache__/
+*.pyc
+data/
+daily_log/
+results/trades.jsonl

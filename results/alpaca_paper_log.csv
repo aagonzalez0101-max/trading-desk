@@ -1,0 +1,5 @@
+time,week,action,symbol,why,order_id,status,filled_qty,filled_price,notional
+2026-09-29T14:15:36-04:00,TEST,buy,SPY,plumbing test,f854cb32-a4c2-48a0-8369-5b6aea1404a7,filled,1.309360449,763.724,1000.0
+2026-09-29T14:15:39-04:00,TEST,sell,SPY,plumbing test,8c54d9ee-92ef-416d-a007-a68a8403860e,filled,1.309360449,763.71,
+2026-09-29T14:15:41-04:00,MANUAL,buy,EFA,"manual test position (near-miss signal week of 2026-09-25), not picked by the rules",b174a07c-7b28-4ec4-9a0b-0174496199cb,filled,319.651994629,104.28,33333.32
+2026-10-21T09:33:11-04:00,2026-10-16,resize,EFA,trim to $100-ledger size,179bcf0e-65be-40c3-9ea1-51308af63ef0,filled,319.332342634,104.26,

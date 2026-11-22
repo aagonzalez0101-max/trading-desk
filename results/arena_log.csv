@@ -1,0 +1,239 @@
+time,strategy,pair,event,side,units,expected_px,bid,ask,fill_px,slippage_pips,spread_pips,stop,target,exit_px,net_pips,realized_usd,minutes,note
+2026-10-20T23:00:08+00:00,,,error,,,,,,,,,,,,,,,"OANDA GET /v3/instruments/EUR_USD/candles -> 401: {""errorMessage"":""Insufficient authorization to perform request.""}"
+2026-10-20T23:00:46+00:00,rsi_m5,NZD_USD,open,1,100,,0.56766,0.5679,0.5679,0.0,2.4,0.56751,0.56797,,,,,5-min RSI 16 < 20 (oversold)
+2026-10-21T00:00:51+00:00,rsi_m5,NZD_USD,close,1,100,,,,,,,,,0.56756,-3.4,-0.034,60.1,60-min time stop
+2026-10-21T02:00:01+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,158.297,158.309,158.298,-0.1,1.2,158.36895,158.17111,,,,,5-min EMA9 crossed below EMA21
+2026-10-21T04:09:05+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T04:09:36+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,158.171,12.7,0.0795,129.6,stop/target hit
+2026-10-21T12:33:30+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T13:21:42+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T13:22:34+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Read timed out. (read timeout=60)"
+2026-10-21T13:25:03+00:00,ema_cross_m5,USD_JPY,open,1,100,,157.959,157.976,157.976,0.0,1.7,157.90012,158.10825,,,,,5-min EMA9 crossed above EMA21
+2026-10-21T13:25:05+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""id"": ""31"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""30"", ""requestID"": ""61561859185719302"", ""time"": ""2026-10-21T13:25:05.375327829Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""3"
+2026-10-21T13:34:54+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T13:44:05+00:00,fade_m1,EUR_USD,open,-1,-100,,1.12355,1.1237,1.12355,-0.0,1.5,1.12416,1.12312,,,,,1-min spike above 20-bar avg +2.5sd
+2026-10-21T13:44:05+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""37"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""36"", ""requestID"": ""61561863968593454"", ""time"": ""2026-10-21T13:44:06.287964822Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""3"
+2026-10-21T13:45:09+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""39"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""38"", ""requestID"": ""97590661258691415"", ""time"": ""2026-10-21T13:45:10.027350308Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""3"
+2026-10-21T13:45:38+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,157.9,-7.6,-0.0486,20.6,stop/target hit
+2026-10-21T13:50:01+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,157.916,157.931,157.916,-0.0,1.5,157.99866,157.77318,,,,,5-min EMA9 crossed below EMA21
+2026-10-21T13:50:04+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""47"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""46"", ""requestID"": ""97590662492144206"", ""time"": ""2026-10-21T13:50:04.947294144Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""4"
+2026-10-21T13:55:04+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""orderCreateTransaction"": {""id"": ""48"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""48"", ""requestID"": ""61561866729244628"", ""time"": ""2026-10-21T13:55:04.772381335Z"", ""type"": ""M"
+2026-10-21T13:55:04+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,157.962,-4.6,-0.0294,5.1,stop/target hit
+2026-10-21T13:55:13+00:00,ema_cross_m5,USD_JPY,open,1,100,,157.953,157.965,157.965,0.0,1.2,157.87984,158.10982,,,,,5-min EMA9 crossed above EMA21
+2026-10-21T13:58:35+00:00,fade_m1,EUR_USD,close,-1,-100,,,,,,,,,1.12312,4.3,0.043,14.5,stop/target hit
+2026-10-21T14:43:35+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,158.111,14.6,0.0914,48.4,stop/target hit
+2026-10-21T16:11:52+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T16:11:52+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T16:23:42+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T16:40:00+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,158.024,158.041,158.024,-0.0,1.7,158.0865,157.929,,,,,5-min EMA9 crossed below EMA21
+2026-10-21T16:40:02+00:00,fade_m1,EUR_USD,open,-1,-100,,1.12348,1.12365,1.12348,-0.0,1.7,1.12429,1.12271,,,,,1-min spike above 20-bar avg +2.5sd
+2026-10-21T16:40:05+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""69"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""68"", ""requestID"": ""79576306766427531"", ""time"": ""2026-10-21T16:40:05.319730407Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""6"
+2026-10-21T16:40:09+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""71"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""70"", ""requestID"": ""97590705293751818"", ""time"": ""2026-10-21T16:40:09.949033149Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""7"
+2026-10-21T16:40:24+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,158.088,-6.4,-0.0409,0.4,stop/target hit
+2026-10-21T16:55:03+00:00,fade_m1,EUR_USD,close,-1,-100,,,,,,,,,1.1232,2.8,0.028,15.0,15-min time stop
+2026-10-21T17:05:16+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T17:05:28+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T17:05:46+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Max retries exceeded with url: /v3/instruments/EUR_USD/candles?granularity=M1&price=BA&count=31 (Caused by NameResolutionError(""HTTPSCon"
+2026-10-21T17:29:28+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T17:29:58+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Max retries exceeded with url: /v3/instruments/EUR_USD/candles?granularity=M1&price=BA&count=31 (Caused by NameResolutionError(""HTTPSCon"
+2026-10-21T17:30:07+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Read timed out. (read timeout=60)"
+2026-10-21T17:30:28+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Max retries exceeded with url: /v3/instruments/EUR_USD/candles?granularity=M1&price=BA&count=31 (Caused by NameResolutionError(""HTTPSCon"
+2026-10-21T17:30:46+00:00,rsi_m5,NZD_USD,open,-1,-100,,0.57021,0.57044,0.57021,-0.0,2.3,0.57063,0.57002,,,,,5-min RSI 84 > 80 (overbought)
+2026-10-21T17:30:59+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""83"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""82"", ""requestID"": ""79576319578545225"", ""time"": ""2026-10-21T17:31:00.141774745Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""8"
+2026-10-21T17:40:00+00:00,ema_cross_m5,USD_JPY,open,1,100,,158.111,158.124,158.123,-0.1,1.3,158.06266,158.22418,,,,,5-min EMA9 crossed above EMA21
+2026-10-21T17:40:06+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""id"": ""89"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""88"", ""requestID"": ""97590720384768795"", ""time"": ""2026-10-21T17:40:07.094106694Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""8"
+2026-10-21T17:56:42+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-21T18:07:29+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T18:07:30+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-21T18:30:50+00:00,rsi_m5,NZD_USD,close,-1,-100,,,,,,,,,0.57043,-2.2,-0.022,60.1,60-min time stop
+2026-10-21T18:50:00+00:00,fade_m1,EUR_USD,open,1,100,,1.12269,1.12286,1.12286,0.0,1.7,1.12209,1.12348,,,,,1-min spike below 20-bar avg -2.5sd
+2026-10-21T18:50:05+00:00,fade_m1,EUR_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""99"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""98"", ""requestID"": ""61561940974428795"", ""time"": ""2026-10-21T18:50:05.193306330Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": ""9"
+2026-10-21T18:51:46+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,158.224,10.1,0.0632,71.8,stop/target hit
+2026-10-21T19:01:57+00:00,fade_m1,EUR_USD,close,1,100,,,,,,,,,1.12208,-7.8,-0.078,12.0,stop/target hit
+2026-10-21T19:30:00+00:00,fade_m1,EUR_USD,open,-1,-100,,1.1229,1.12307,1.1229,-0.0,1.7,1.12375,1.12222,,,,,1-min spike above 20-bar avg +2.5sd
+2026-10-21T19:30:01+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""109"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""108"", ""requestID"": ""79576349531862567"", ""time"": ""2026-10-21T19:30:01.873676352Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-21T19:45:02+00:00,fade_m1,EUR_USD,close,-1,-100,,,,,,,,,1.12328,-3.8,-0.038,15.0,15-min time stop
+2026-10-21T20:06:23+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-21T21:49:02+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T21:50:27+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T22:10:54+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T22:24:50+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T22:29:36+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T22:33:36+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-21T23:00:09+00:00,,,error,,,,,,,,,,,,,,,"OANDA GET /v3/instruments/EUR_USD/candles -> 401: {""errorMessage"":""Insufficient authorization to perform request.""}"
+2026-10-21T23:00:10+00:00,,,error,,,,,,,,,,,,,,,"OANDA GET /v3/instruments/USD_JPY/candles -> 401: {""errorMessage"":""Insufficient authorization to perform request.""}"
+2026-10-21T23:00:50+00:00,,,error,,,,,,,,,,,,,,,"OANDA GET /v3/instruments/NZD_USD/candles -> 401: {""errorMessage"":""Insufficient authorization to perform request.""}"
+2026-10-21T23:35:06+00:00,rsi_m5,NZD_USD,open,-1,-100,,0.56984,0.57009,0.56984,-0.0,2.5,0.57026,0.56966,,,,,5-min RSI 80 > 80 (overbought)
+2026-10-21T23:35:11+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""119"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""118"", ""requestID"": ""61562012719124087"", ""time"": ""2026-10-21T23:35:11.721751442Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-21T23:38:00+00:00,rsi_m5,NZD_USD,close,-1,-100,,,,,,,,,0.5703,-4.6,-0.046,2.9,stop/target hit
+2026-10-21T23:40:05+00:00,rsi_m5,NZD_USD,open,-1,-100,,0.57011,0.57037,0.57011,-0.0,2.6,0.57056,0.56989,,,,,5-min RSI 85 > 80 (overbought)
+2026-10-21T23:40:05+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""127"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""126"", ""requestID"": ""79576412465113185"", ""time"": ""2026-10-21T23:40:05.493534994Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-21T23:44:38+00:00,rsi_m5,NZD_USD,close,-1,-100,,,,,,,,,0.57056,-4.5,-0.045,4.5,stop/target hit
+2026-10-21T23:45:02+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,158.124,158.138,158.124,-0.0,1.4,158.15193,158.06964,,,,,5-min EMA9 crossed below EMA21
+2026-10-21T23:45:02+00:00,rsi_m5,NZD_USD,open,-1,-100,,0.5703,0.57055,0.5703,-0.0,2.5,0.5708,0.5701,,,,,5-min RSI 93 > 80 (overbought)
+2026-10-21T23:45:03+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""139"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""138"", ""requestID"": ""79576413715251578"", ""time"": ""2026-10-21T23:45:03.944085291Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-21T23:45:04+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""141"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""140"", ""requestID"": ""79576413719446247"", ""time"": ""2026-10-21T23:45:04.309274578Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-21T23:50:03+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""143"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""142"", ""requestID"": ""79576414969573741"", ""time"": ""2026-10-21T23:50:03.948688394Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-21T23:55:03+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""145"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""144"", ""requestID"": ""79576416228090340"", ""time"": ""2026-10-21T23:55:03.380369756Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-21T23:55:53+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,158.152,-2.8,-0.0179,10.9,stop/target hit
+2026-10-22T00:00:04+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""149"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""148"", ""requestID"": ""61562018983261467"", ""time"": ""2026-10-22T00:00:04.116342512Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T00:05:00+00:00,ema_cross_m5,USD_JPY,open,1,100,,158.162,158.181,158.181,0.0,1.9,158.13259,158.24782,,,,,5-min EMA9 crossed above EMA21
+2026-10-22T00:05:01+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""155"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""154"", ""requestID"": ""115605215755919577"", ""time"": ""2026-10-22T00:05:01.106155452Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-22T00:05:06+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""id"": ""157"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""156"", ""requestID"": ""79576418757684682"", ""time"": ""2026-10-22T00:05:06.201629604Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T00:10:05+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""159"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""158"", ""requestID"": ""115605217031217735"", ""time"": ""2026-10-22T00:10:05.242016557Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-22T00:13:25+00:00,rsi_m5,NZD_USD,close,-1,-100,,,,,,,,,0.57009,2.1,0.021,28.4,stop/target hit
+2026-10-22T00:13:31+00:00,rsi_m5,NZD_USD,skip,-1,,,0.56984,0.57009,,,,,,,,,,price already past stop/target
+2026-10-22T00:37:10+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T01:03:44+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,158.133,-4.8,-0.0307,58.7,stop/target hit
+2026-10-22T01:08:20+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-22T01:15:00+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,158.121,158.137,158.121,-0.0,1.6,158.19271,157.99857,,,,,5-min EMA9 crossed below EMA21
+2026-10-22T01:15:05+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""169"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""168"", ""requestID"": ""115605233388655913"", ""time"": ""2026-10-22T01:15:05.489252070Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-22T01:35:57+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-22T02:04:56+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T02:05:04+00:00,rsi_m5,NZD_USD,open,1,100,,0.56915,0.56938,0.56938,0.0,2.3,0.56886,0.56965,,,,,5-min RSI 9 < 20 (oversold)
+2026-10-22T02:05:26+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""175"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""174"", ""requestID"": ""61562050533730635"", ""time"": ""2026-10-22T02:05:26.956566572Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:10:08+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""177"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""176"", ""requestID"": ""61562051716878406"", ""time"": ""2026-10-22T02:10:08.454392573Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:15:03+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""179"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""178"", ""requestID"": ""61562052950383867"", ""time"": ""2026-10-22T02:15:03.105141545Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:17:22+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,157.999,12.2,0.0764,62.4,stop/target hit
+2026-10-22T02:18:02+00:00,fade_m1,EUR_USD,open,-1,-100,,1.12345,1.12359,1.12345,-0.0,1.4,1.12405,1.12301,,,,,1-min spike above 20-bar avg +2.5sd
+2026-10-22T02:18:06+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""187"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""186"", ""requestID"": ""61562053718152665"", ""time"": ""2026-10-22T02:18:06.740303294Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:19:08+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""189"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""188"", ""requestID"": ""61562053978274892"", ""time"": ""2026-10-22T02:19:08.870150965Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:20:04+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""191"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""190"", ""requestID"": ""97590851237748386"", ""time"": ""2026-10-22T02:20:05.047965473Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:25:07+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""193"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""192"", ""requestID"": ""79576453996488914"", ""time"": ""2026-10-22T02:25:07.662566857Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:30:06+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""195"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""194"", ""requestID"": ""115605252267112674"", ""time"": ""2026-10-22T02:30:06.609111164Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-22T02:33:03+00:00,fade_m1,EUR_USD,close,-1,-100,,,,,,,,,1.12392,-4.7,-0.047,15.0,15-min time stop
+2026-10-22T02:40:06+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""201"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""200"", ""requestID"": ""79576457767895142"", ""time"": ""2026-10-22T02:40:06.377578757Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T02:40:58+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T02:59:01+00:00,fade_m1,EUR_USD,open,-1,-100,,1.12429,1.12445,1.12429,-0.0,1.6,1.12487,1.1239,,,,,1-min spike above 20-bar avg +2.5sd
+2026-10-22T02:59:05+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""207"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""206"", ""requestID"": ""79576462541845564"", ""time"": ""2026-10-22T02:59:05.299269952Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T03:04:15+00:00,fade_m1,EUR_USD,close,-1,-100,,,,,,,,,1.12487,-5.8,-0.058,5.2,stop/target hit
+2026-10-22T03:05:05+00:00,rsi_m5,NZD_USD,close,1,100,,,,,,,,,0.56932,-0.6,-0.006,60.0,60-min time stop
+2026-10-22T04:09:30+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-22T04:17:03+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T04:19:59+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-22T04:28:11+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T05:18:52+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-22T14:48:17+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-22T14:48:18+00:00,,,error,,,,,,,,,,,,,,,"('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
+2026-10-22T14:58:01+00:00,fade_m1,EUR_USD,open,-1,-100,,1.11988,1.12004,1.11988,-0.0,1.6,1.12041,1.1195,,,,,1-min spike above 20-bar avg +2.5sd
+2026-10-22T14:58:02+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""219"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""218"", ""requestID"": ""115605440497923688"", ""time"": ""2026-10-22T14:58:03.127843792Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-22T15:05:20+00:00,fade_m1,EUR_USD,close,-1,-100,,,,,,,,,1.12041,-5.3,-0.053,7.3,stop/target hit
+2026-10-22T15:14:59+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,157.11,157.125,157.11,-0.0,1.5,157.24323,156.86604,,,,,5-min EMA9 crossed below EMA21
+2026-10-22T15:15:04+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""227"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""226"", ""requestID"": ""115605444781420504"", ""time"": ""2026-10-22T15:15:05.045556965Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-22T15:29:59+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""orderCreateTransaction"": {""id"": ""228"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""228"", ""requestID"": ""115605448536458802"", ""time"": ""2026-10-22T15:30:00.677505878Z"", ""type"":"
+2026-10-22T15:30:06+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,157.223,-11.3,-0.0726,15.1,stop/target hit
+2026-10-22T15:30:18+00:00,ema_cross_m5,USD_JPY,open,1,100,,157.194,157.208,157.208,0.0,1.4,157.09636,157.45829,,,,,5-min EMA9 crossed above EMA21
+2026-10-22T15:35:03+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""orderCreateTransaction"": {""id"": ""236"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""236"", ""requestID"": ""97591051303034849"", ""time"": ""2026-10-22T15:35:04.175585668Z"", ""type"": "
+2026-10-22T15:35:10+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,157.181,-2.7,-0.0173,4.9,stop/target hit
+2026-10-22T15:35:18+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,157.194,157.21,157.194,-0.0,1.6,157.3057,156.94811,,,,,5-min EMA9 crossed below EMA21
+2026-10-22T15:35:25+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T16:40:00+00:00,rsi_m5,NZD_USD,open,-1,-100,,0.56808,0.56831,0.56808,-0.0,2.3,0.56851,0.56788,,,,,5-min RSI 84 > 80 (overbought)
+2026-10-22T16:40:04+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""249"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""248"", ""requestID"": ""115605466174265323"", ""time"": ""2026-10-22T16:40:05.710311616Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-22T16:41:47+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,156.947,24.7,0.1558,66.5,stop/target hit
+2026-10-22T16:44:49+00:00,rsi_m5,NZD_USD,close,-1,-100,,,,,,,,,0.56851,-4.3,-0.043,4.8,stop/target hit
+2026-10-22T16:45:01+00:00,rsi_m5,NZD_USD,open,-1,-100,,0.56827,0.5685,0.56827,-0.0,2.3,0.56873,0.56806,,,,,5-min RSI 86 > 80 (overbought)
+2026-10-22T16:45:04+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""259"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""258"", ""requestID"": ""97591068924160364"", ""time"": ""2026-10-22T16:45:05.049832798Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-22T17:17:41+00:00,rsi_m5,NZD_USD,close,-1,-100,,,,,,,,,0.56873,-4.6,-0.046,32.7,stop/target hit
+2026-10-22T17:28:52+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T17:50:03+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-22T19:31:39+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-23T02:11:54+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-23T03:59:11+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-23T04:30:45+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Read timed out. (read timeout=60)"
+2026-10-23T04:45:09+00:00,rsi_m5,NZD_USD,open,1,100,,0.56911,0.56934,0.56934,0.0,2.3,0.56899,0.56944,,,,,5-min RSI 19 < 20 (oversold)
+2026-10-23T04:45:11+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""267"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""266"", ""requestID"": ""61562453123557623"", ""time"": ""2026-10-23T04:45:11.671763773Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T04:50:11+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""269"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""268"", ""requestID"": ""115605649906387936"", ""time"": ""2026-10-23T04:50:10.915531116Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-23T04:54:04+00:00,rsi_m5,NZD_USD,close,1,100,,,,,,,,,0.56899,-3.5,-0.035,8.9,stop/target hit
+2026-10-23T04:54:14+00:00,rsi_m5,NZD_USD,open,1,100,,0.56896,0.5692,0.5692,0.0,2.4,0.56895,0.56937,,,,,5-min RSI 18 < 20 (oversold)
+2026-10-23T04:54:23+00:00,rsi_m5,NZD_USD,close,1,100,,,,,,,,,0.56894,-2.6,-0.026,0.2,stop/target hit
+2026-10-23T04:55:03+00:00,rsi_m5,NZD_USD,open,1,100,,0.56895,0.56917,0.56918,0.1,2.2,0.5689,0.56932,,,,,5-min RSI 17 < 20 (oversold)
+2026-10-23T04:55:04+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""283"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""282"", ""requestID"": ""61562455611213705"", ""time"": ""2026-10-23T04:55:04.388454922Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T04:59:43+00:00,rsi_m5,NZD_USD,close,1,100,,,,,,,,,0.5689,-2.8,-0.028,4.7,stop/target hit
+2026-10-23T05:00:03+00:00,rsi_m5,NZD_USD,open,1,100,,0.56882,0.56906,0.56906,0.0,2.4,0.56874,0.56918,,,,,5-min RSI 16 < 20 (oversold)
+2026-10-23T05:00:13+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""291"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""290"", ""requestID"": ""115605652423392307"", ""time"": ""2026-10-23T05:00:10.962773709Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-23T05:05:13+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""293"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""292"", ""requestID"": ""115605653694501861"", ""time"": ""2026-10-23T05:05:13.410788367Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-23T05:40:03+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,156.862,156.876,156.864,-0.2,1.4,156.96561,156.67279,,,,,5-min EMA9 crossed below EMA21
+2026-10-23T05:40:05+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""299"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""298"", ""requestID"": ""97591263956418770"", ""time"": ""2026-10-23T05:40:05.489537348Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T05:45:05+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""orderCreateTransaction"": {""id"": ""300"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""300"", ""requestID"": ""97591265214976432"", ""time"": ""2026-10-23T05:45:05.705624523Z"", ""type"": "
+2026-10-23T05:45:12+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,156.927,-6.3,-0.0405,5.2,stop/target hit
+2026-10-23T05:45:20+00:00,ema_cross_m5,USD_JPY,open,1,100,,156.91,156.926,156.928,0.2,1.6,156.83573,157.12904,,,,,5-min EMA9 crossed above EMA21
+2026-10-23T05:50:01+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""orderCreateTransaction"": {""id"": ""308"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""308"", ""requestID"": ""97591266456750376"", ""time"": ""2026-10-23T05:50:01.645761524Z"", ""type"": "
+2026-10-23T05:50:07+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,156.898,-3.0,-0.0193,4.8,stop/target hit
+2026-10-23T05:50:16+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,156.889,156.905,156.888,0.1,1.6,157.00516,156.70318,,,,,5-min EMA9 crossed below EMA21
+2026-10-23T06:00:09+00:00,rsi_m5,NZD_USD,close,1,100,,,,,,,,,0.56904,-0.2,-0.002,60.1,60-min time stop
+2026-10-23T06:20:01+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""orderCreateTransaction"": {""id"": ""320"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""320"", ""requestID"": ""115605672518671453"", ""time"": ""2026-10-23T06:20:01.560453946Z"", ""type"":"
+2026-10-23T06:20:07+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,156.979,-9.1,-0.0586,29.9,stop/target hit
+2026-10-23T06:20:15+00:00,ema_cross_m5,USD_JPY,open,1,100,,156.96,156.976,156.975,-0.1,1.6,156.8703,157.16939,,,,,5-min EMA9 crossed above EMA21
+2026-10-23T07:16:01+00:00,fade_m1,EUR_USD,open,1,100,,1.11985,1.12003,1.12003,0.0,1.8,1.11916,1.12075,,,,,1-min spike below 20-bar avg -2.5sd
+2026-10-23T07:16:03+00:00,fade_m1,EUR_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""333"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""332"", ""requestID"": ""97591288108102670"", ""time"": ""2026-10-23T07:16:03.204314877Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T07:25:49+00:00,fade_m1,EUR_USD,close,1,100,,,,,,,,,1.11915,-8.8,-0.088,9.8,stop/target hit
+2026-10-23T08:00:16+00:00,,,error,,,,,,,,,,,,,,,"OANDA GET /v3/instruments/AUD_USD/candles -> 401: {""errorMessage"":""Insufficient authorization to perform request.""}"
+2026-10-23T08:10:04+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,156.883,156.901,156.889,-0.6,1.8,157.0902,156.76411,,,,,5-min EMA9 crossed below EMA21
+2026-10-23T08:10:05+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,156.864,-11.1,-0.0715,109.8,stop/target hit
+2026-10-23T08:10:15+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""343"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""342"", ""requestID"": ""61562504727362623"", ""time"": ""2026-10-23T08:10:15.265602672Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T08:10:29+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,156.764,12.5,0.0789,0.4,stop/target hit
+2026-10-23T08:32:02+00:00,fade_m1,EUR_USD,open,1,100,,1.1194,1.11956,1.11956,0.0,1.6,1.11901,1.12005,,,,,1-min spike below 20-bar avg -2.5sd
+2026-10-23T08:32:05+00:00,fade_m1,EUR_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""351"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""350"", ""requestID"": ""97591307242426607"", ""time"": ""2026-10-23T08:32:05.476027543Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T08:33:33+00:00,fade_m1,EUR_USD,close,1,100,,,,,,,,,1.11901,-5.5,-0.055,1.5,stop/target hit
+2026-10-23T08:34:04+00:00,fade_m1,EUR_USD,open,1,100,,1.11884,1.11901,1.11901,0.0,1.7,1.11801,1.11995,,,,,1-min spike below 20-bar avg -2.5sd
+2026-10-23T08:34:08+00:00,fade_m1,EUR_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""359"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""358"", ""requestID"": ""115605706266548640"", ""time"": ""2026-10-23T08:34:08.347125962Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-23T08:49:05+00:00,fade_m1,EUR_USD,close,1,100,,,,,,,,,1.11916,1.5,0.015,15.0,15-min time stop
+2026-10-23T09:48:45+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T10:07:04+00:00,fade_m1,EUR_USD,open,-1,-100,,1.12036,1.12052,1.12036,-0.0,1.6,1.12093,1.12001,,,,,1-min spike above 20-bar avg +2.5sd
+2026-10-23T10:07:08+00:00,fade_m1,EUR_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""369"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""368"", ""requestID"": ""61562534143999409"", ""time"": ""2026-10-23T10:07:08.582899794Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T10:10:18+00:00,fade_m1,EUR_USD,close,-1,-100,,,,,,,,,1.12,3.6,0.036,3.2,stop/target hit
+2026-10-23T10:55:05+00:00,ema_cross_m5,USD_JPY,open,1,100,,156.784,156.797,156.797,0.0,1.3,156.70032,156.96936,,,,,5-min EMA9 crossed above EMA21
+2026-10-23T10:55:08+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""id"": ""377"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""376"", ""requestID"": ""79576944733057339"", ""time"": ""2026-10-23T10:55:08.404841003Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T12:20:11+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,156.7,-9.7,-0.0625,85.1,stop/target hit
+2026-10-23T12:25:03+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,156.704,156.721,156.704,-0.0,1.7,156.80121,156.53507,,,,,5-min EMA9 crossed below EMA21
+2026-10-23T12:25:08+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""385"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""384"", ""requestID"": ""79576967381054825"", ""time"": ""2026-10-23T12:25:08.300425180Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T13:55:13+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Read timed out. (read timeout=60)"
+2026-10-23T13:55:14+00:00,,,error,,,,,,,,,,,,,,,"HTTPSConnectionPool(host='api-fxpractice.oanda.com', port=443): Read timed out. (read timeout=60)"
+2026-10-23T13:55:45+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,156.528,17.6,0.1113,90.7,stop/target hit
+2026-10-23T14:00:01+00:00,ema_cross_m5,USD_JPY,open,1,100,,156.735,156.752,156.752,0.0,1.7,156.57234,157.08132,,,,,5-min EMA9 crossed above EMA21
+2026-10-23T14:00:02+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""id"": ""393"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""392"", ""requestID"": ""79576991271656931"", ""time"": ""2026-10-23T14:00:04.996108113Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T14:31:02+00:00,fade_m1,EUR_USD,open,1,100,,1.11978,1.11993,1.11993,0.0,1.5,1.11938,1.12034,,,,,1-min spike below 20-bar avg -2.5sd
+2026-10-23T14:31:04+00:00,fade_m1,EUR_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""399"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""398"", ""requestID"": ""61562600576295356"", ""time"": ""2026-10-23T14:31:07.289606297Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T14:31:57+00:00,fade_m1,EUR_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""401"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""400"", ""requestID"": ""115605796328879508"", ""time"": ""2026-10-23T14:32:00.741915430Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-23T14:46:07+00:00,fade_m1,EUR_USD,close,1,100,,,,,,,,,1.12031,3.8,0.038,15.1,15-min time stop
+2026-10-23T14:48:03+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T14:54:41+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-23T15:06:03+00:00,fade_m1,EUR_USD,open,1,100,,1.11967,1.11982,1.11985,0.3,1.5,1.11914,1.12029,,,,,1-min spike below 20-bar avg -2.5sd
+2026-10-23T15:06:03+00:00,fade_m1,EUR_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""411"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""410"", ""requestID"": ""61562609382231458"", ""time"": ""2026-10-23T15:06:06.720507099Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T15:21:03+00:00,fade_m1,EUR_USD,close,1,100,,,,,,,,,1.11976,-0.9,-0.009,15.0,15-min time stop
+2026-10-23T15:44:59+00:00,rsi_m5,NZD_USD,open,-1,-100,,0.57016,0.57039,0.57016,-0.0,2.3,0.57058,0.56996,,,,,5-min RSI 88 > 80 (overbought)
+2026-10-23T15:45:01+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""421"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""420"", ""requestID"": ""79577017696079287"", ""time"": ""2026-10-23T15:45:04.751363412Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T15:47:43+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T15:48:48+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T15:50:09+00:00,rsi_m5,NZD_USD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""423"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""422"", ""requestID"": ""115605816007802804"", ""time"": ""2026-10-23T15:50:12.748700397Z"", ""type"": ""ORDER_CANCEL"", ""orderID"":"
+2026-10-23T16:00:12+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,156.888,13.6,0.0858,120.2,120-min time stop
+2026-10-23T16:30:49+00:00,rsi_m5,NZD_USD,close,-1,-100,,,,,,,,,0.56996,2.0,0.02,45.8,stop/target hit
+2026-10-23T17:10:01+00:00,rsi_m5,NZD_USD,open,1,100,,0.56948,0.56971,0.56971,0.0,2.3,0.56929,0.56978,,,,,5-min RSI 18 < 20 (oversold)
+2026-10-23T17:10:03+00:00,rsi_m5,NZD_USD,rejected,1,,,,,,,,,,,,,,"{""id"": ""435"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""434"", ""requestID"": ""61562640586899503"", ""time"": ""2026-10-23T17:10:06.392786643Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T17:30:01+00:00,ema_cross_m5,USD_JPY,open,-1,-100,,156.833,156.85,156.833,-0.0,1.7,156.92104,156.68093,,,,,5-min EMA9 crossed below EMA21
+2026-10-23T17:30:04+00:00,ema_cross_m5,USD_JPY,rejected,-1,,,,,,,,,,,,,,"{""id"": ""441"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""440"", ""requestID"": ""97591442644762081"", ""time"": ""2026-10-23T17:30:07.569970013Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T17:41:43+00:00,ema_cross_m5,USD_JPY,close,-1,-100,,,,,,,,,156.922,-8.9,-0.0573,11.7,stop/target hit
+2026-10-23T17:50:52+00:00,rsi_m5,NZD_USD,close,1,100,,,,,,,,,0.56978,0.7,0.007,40.9,stop/target hit
+2026-10-23T17:59:59+00:00,round_bounce_m5,USD_CAD,open,-1,-100,,1.39978,1.39995,1.3998,-0.2,1.7,1.4015,1.39797,,,,,5-min bar rejected round number 1.400
+2026-10-23T18:00:05+00:00,round_bounce_m5,USD_CAD,rejected,-1,,,,,,,,,,,,,,"{""id"": ""451"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""450"", ""requestID"": ""79577051689032489"", ""time"": ""2026-10-23T18:00:08.085807750Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T18:37:27+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T19:00:22+00:00,,,error,,,,,,,,,,,,,,,"OANDA GET /v3/instruments/EUR_USD/candles -> 401: {""errorMessage"":""Insufficient authorization to perform request.""}"
+2026-10-23T19:17:45+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-23T19:44:44+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T19:50:01+00:00,ema_cross_m5,USD_JPY,open,1,100,,156.884,156.896,156.896,0.0,1.2,156.8413,156.99189,,,,,5-min EMA9 crossed above EMA21
+2026-10-23T19:50:02+00:00,ema_cross_m5,USD_JPY,rejected,1,,,,,,,,,,,,,,"{""id"": ""457"", ""accountID"": ""REDACTED"", ""userID"": XXXXXXXX, ""batchID"": ""456"", ""requestID"": ""79577079358605265"", ""time"": ""2026-10-23T19:50:05.557753140Z"", ""type"": ""ORDER_CANCEL"", ""orderID"": "
+2026-10-23T19:58:34+00:00,ema_cross_m5,USD_JPY,close,1,100,,,,,,,,,156.838,-5.8,-0.0373,8.5,stop/target hit
+2026-10-23T20:00:00+00:00,,,error,,,,,,,,,,,,,,,"OANDA GET /v3/accounts/REDACTED/trades/447 -> 404: {""lastTransactionID"":""463"",""errorMessage"":""The trade ID specified does not exist"",""errorCode"":""NO_SUCH_TRADE""}"
+2026-10-23T20:00:30+00:00,round_bounce_m5,USD_CAD,close,-1,-100,,,,,,,,,1.40078,-9.8,-0.0707,120.5,stop/target hit
+2026-10-23T22:12:53+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T22:20:13+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T22:21:23+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-23T22:48:36+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T22:54:02+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-23T23:55:57+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-24T04:23:21+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-24T14:28:14+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-25T14:05:12+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
+2026-10-25T14:06:28+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-25T14:07:08+00:00,,,error,,,,,,,,,,,,,,,[Errno 13] Permission denied: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp'
+2026-10-25T14:10:50+00:00,,,error,,,,,,,,,,,,,,,[WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\aagon\\Desktop\\trading bot\\results\\arena_state.tmp' -> 'C:\\Users\\aagon\\Desktop\\trading 
