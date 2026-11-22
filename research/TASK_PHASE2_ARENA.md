@@ -4,15 +4,16 @@ The user wants Phase 2 (slow swing/trend strategies) running NOW on paper in the
 graded on a schedule, while he works Phase 1 (PrizePicks) hands-on in the betting-desk session. No real money.
 
 ## Status at handoff
-- Repo: private `aagonzalez0101-max/trading-desk` -- the user creates it on github.com (no gh CLI on this machine); the betting-desk
-  session pushes the code once he says it exists. If `git remote -v` is empty, ask him whether it's created yet.
+- Repo: PUBLIC `aagonzalez0101-max/trading-desk` (public = unlimited free Actions minutes; never commit .env/notify.json/guard.json
+  or account numbers). Code pushed 11/22, remote `origin` set.
 - Secrets he adds in GitHub (Settings -> Secrets -> Actions): ALPACA_API_KEY, ALPACA_SECRET_KEY (paper keys, same as .env),
   optional NOTIFY_JSON (contents of notify.json). Never commit .env or notify.json.
 
 ## Paper accounts (user 11/22, Alpaca allows 3)
 - User 11/22: ONLY TWO paper accounts now ($500 + $10k); the old one is gone. The pre-FOMC drift test moves into the $10k account
   as its own ledger sleeve (bot/ledger.py `fomc`), separate from the Phase 2 sleeves. Secrets are in local .env (ALPACA_SECRET_500,
-  ALPACA_SECRET_10K); the KEY ids (PK...) were still missing at handoff -- ask the user. GitHub secrets: the user adds them himself.
+  ALPACA_SECRET_10K); KEY ids added 11/22 (local .env ALPACA_KEY_500 / ALPACA_KEY_10K); both accounts verified ACTIVE ($500 / $10,000). GitHub Actions
+  secrets ADDED by the user 11/22: ALPACA_KEY_500, ALPACA_SECRET_500, ALPACA_KEY_10K, ALPACA_SECRET_10K (NOTIFY_JSON not added yet).
 - NEW "Scar OGC" = Real-Start, $500 -> secrets ALPACA_KEY_500 / ALPACA_SECRET_500. What the first real transfer would do:
   fractional shares, $1 minimums, rounding -- small-account frictions show up here.
 - NEW "Phase 2 Main", $10,000 -> secrets ALPACA_KEY_10K / ALPACA_SECRET_10K. The main record.
