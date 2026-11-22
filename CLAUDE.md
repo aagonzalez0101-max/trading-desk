@@ -62,9 +62,11 @@ SURPLUS (the betting desk's plan says above ~$5k), never the roll the model plan
 | Forex: 19 variants, 9 chart-pattern families, Alex G rules | **ALL FAILED** after costs 2015-now | `results/sweep_log.csv`, `round5_patterns.csv` |
 | SPY calendar effects, overnight drift | **FAILED** (faded after publication / lost to buy-and-hold) | `round6/7` |
 | Meme-coin jump scalping (Pump.fun, DexScreener) | **FAILED** (every rule -2.5% to -15%/trade; silent coins = rugs) | betting desk 11/9 notes |
+| **Phase 2 ETF risk parity (8 ETFs, inverse-vol, monthly)** | **PASSED** 2004-26: +7.0%/yr, worst drop -21% vs SPY -55%, Sharpe 0.65 vs 0.52 (but lost to SPY on Sharpe 2015-26). Paper sleeve in $500 + $10k accounts via GitHub Action | `results/PHASE2_STATUS.md` |
+| Phase 2 ETF trend (3/6/12m, 8 and 25 ETFs), dual momentum | **FAILED** (trend-8 beat only 82% of random-signal placebos; wide-25 and dual below SPY's Sharpe) | `results/phase2_backtest_report.txt` |
 | Forex paper ARENA (6 scalpers, OANDA practice) | running since 10/9, all far short of 100 trades; rsi_m5 t -3.2 | `run_arena.py --report` |
 
-Tally: **53+ ideas tested, 1 passed (FOMC drift).** That is the honest base rate for retail trading edges -- the next strategy
+Tally: **57+ ideas tested, 2 passed (FOMC drift; Phase 2 risk parity -- a slow allocation, not a trading edge).** That is the honest base rate for retail trading edges -- the next strategy
 needs a reason it should work (a structural edge: fees/rebates, slow-updating prices, a forced flow), not a chart pattern.
 
 # Where to look next (priority order)

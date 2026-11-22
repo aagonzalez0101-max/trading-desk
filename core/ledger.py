@@ -14,12 +14,32 @@ import os, sys, json, uuid, datetime, collections, math
 CT = __import__("zoneinfo").ZoneInfo("America/Chicago")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 F = os.path.join(ROOT, "results", "trades.jsonl")
+# Phase 2 arena records live in their own file: the GitHub Action writes and commits it, so it never collides with this
+# machine's trades.jsonl. Write with `with ledger.using(PHASE2): ...`; summary()/realized() read both.
+PHASE2 = os.path.join(ROOT, "results", "phase2_trades.jsonl")
+_ALL = [F, PHASE2]
 
 
-def _rows():
-    if not os.path.exists(F):
-        return []
-    return [json.loads(l) for l in open(F, encoding="utf-8") if l.strip()]
+class using:
+    """temporarily point the ledger at another file (with ledger.using(ledger.PHASE2): open_trade(...))"""
+    def __init__(self, path):
+        self.path = path
+
+    def __enter__(self):
+        global F
+        self.old, F = F, self.path
+
+    def __exit__(self, *a):
+        global F
+        F = self.old
+
+
+def _rows(files=None):
+    out = []
+    for p in files or [F]:
+        if os.path.exists(p):
+            out += [json.loads(l) for l in open(p, encoding="utf-8") if l.strip()]
+    return out
 
 
 def _write(rows):
@@ -55,13 +75,13 @@ def open_trades(strategy=None):
 
 
 def realized(kind=None, since=None):
-    return sum(r["net"] for r in _rows() if r["net"] is not None and (kind is None or r["kind"] == kind)
+    return sum(r["net"] for r in _rows(_ALL) if r["net"] is not None and (kind is None or r["kind"] == kind)
                and (since is None or (r["ts_close"] or "") >= since))
 
 
 def summary():
     S = collections.defaultdict(list)
-    for r in _rows():
+    for r in _rows(_ALL):
         if r["net"] is not None and r["tag"] == "STRATEGY":
             S[(r["kind"], r["strategy"])].append(r["net"])
     print("STRATEGY trades only (PAPER vs LIVE):")
@@ -70,7 +90,8 @@ def summary():
         sd = (sum((x - m) ** 2 for x in v) / (n - 1)) ** .5 if n > 1 else 0
         t = m / (sd / n ** .5) if sd else 0
         print("  %-5s %-22s n=%4d  net $%+8.2f  avg $%+.3f  win %.0f%%  t %+.1f" % (k, s, n, sum(v), m, 100 * sum(x > 0 for x in v) / n, t))
-    print("open trades:", len(open_trades()))
+    print("open trades: %d (+ %d Phase 2 sleeve-months in progress)" % (len(open_trades()), len(
+        [r for r in _rows([PHASE2]) if r["net"] is None])))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,50 @@
+{
+ "tsmom_etf8": {
+  "months": 275,
+  "avg_month": 0.00541,
+  "sd_month": 0.02227,
+  "worst_month": -0.0872,
+  "worst_dd_monthly": -0.1305,
+  "pass_": false
+ },
+ "tsmom_wide25": {
+  "months": 275,
+  "avg_month": 0.0032,
+  "sd_month": 0.01816,
+  "worst_month": -0.0512,
+  "worst_dd_monthly": -0.1248,
+  "pass_": false
+ },
+ "dual_momentum": {
+  "months": 275,
+  "avg_month": 0.0075,
+  "sd_month": 0.03522,
+  "worst_month": -0.1249,
+  "worst_dd_monthly": -0.2164,
+  "pass_": false
+ },
+ "risk_parity8": {
+  "months": 275,
+  "avg_month": 0.00593,
+  "sd_month": 0.02342,
+  "worst_month": -0.1064,
+  "worst_dd_monthly": -0.1964,
+  "pass_": true
+ },
+ "spy_hold": {
+  "months": 275,
+  "avg_month": 0.00907,
+  "sd_month": 0.04225,
+  "worst_month": -0.1652,
+  "worst_dd_monthly": -0.5078,
+  "pass_": null
+ },
+ "sixty_forty": {
+  "months": 275,
+  "avg_month": 0.00651,
+  "sd_month": 0.02704,
+  "worst_month": -0.1081,
+  "worst_dd_monthly": -0.3202,
+  "pass_": true
+ }
+}

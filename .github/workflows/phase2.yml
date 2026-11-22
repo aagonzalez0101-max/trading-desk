@@ -1,0 +1,74 @@
+# PHASE 2 PAPER ARENA + FOMC DRIFT -- runs on GitHub's free runners (public repo = unlimited minutes). PAPER ONLY:
+# bot/alpaca.py can only reach paper-api.alpaca.markets. Secrets (repo Settings -> Secrets -> Actions):
+#   ALPACA_KEY_500 / ALPACA_SECRET_500 ($500 Real-Start), ALPACA_KEY_10K / ALPACA_SECRET_10K ($10k Main), NOTIFY_JSON (optional)
+# The runner commits results/ back so the next run (and the betting-desk session) sees the sleeves.
+name: phase2-arena
+
+on:
+  schedule:
+    - cron: "30 21 * * 1-5"      # daily pass after the US close (3:30pm CT in winter, 4:30pm CT in summer)
+    - cron: "15 17,18 * * 1-5"   # FOMC drift check; one of these lands before 1:50pm ET in both EST and EDT
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "daily | fomc | review | quarterly"
+        default: daily
+
+concurrency:
+  group: trading-desk          # one run at a time; a queued run starts after the last one has committed its results
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Secrets to local files (never committed: .env and notify.json are gitignored)
+        env:
+          K500: ${{ secrets.ALPACA_KEY_500 }}
+          S500: ${{ secrets.ALPACA_SECRET_500 }}
+          K10K: ${{ secrets.ALPACA_KEY_10K }}
+          S10K: ${{ secrets.ALPACA_SECRET_10K }}
+          NOTIFY_JSON: ${{ secrets.NOTIFY_JSON }}
+        run: |
+          printf 'ALPACA_KEY_500=%s\nALPACA_SECRET_500=%s\nALPACA_KEY_10K=%s\nALPACA_SECRET_10K=%s\n' "$K500" "$S500" "$K10K" "$S10K" > .env
+          if [ -n "$NOTIFY_JSON" ]; then printf '%s' "$NOTIFY_JSON" > notify.json; fi
+
+      - name: FOMC drift (acts only on the day before / day of an announcement, 1:50-1:58pm ET)
+        if: github.event.schedule == '15 17,18 * * 1-5' || inputs.job == 'fomc'
+        run: python run_fomc_paper.py --wait
+
+      - name: Phase 2 daily pass
+        if: github.event.schedule == '30 21 * * 1-5' || inputs.job == 'daily'
+        run: python run_phase2.py
+
+      - name: Phase 2 review (manual)
+        if: inputs.job == 'review' || inputs.job == 'quarterly'
+        run: python run_phase2.py --review ${{ inputs.job == 'quarterly' && 'quarterly' || '' }}
+
+      - name: Weekly summary (Mondays)
+        if: github.event.schedule == '30 21 * * 1-5' && github.event_name == 'schedule'
+        run: |
+          if [ "$(date -u +%u)" = "1" ]; then python daily.py --post; fi
+
+      - name: Commit results back
+        if: always()
+        run: |
+          git config user.name "trading-desk-bot"
+          git config user.email "trading-desk-bot@users.noreply.github.com"
+          git add results/
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "paper: $(date -u +'%Y-%m-%d %H:%M') UTC ${{ github.event.schedule || inputs.job }}"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done

@@ -27,12 +27,13 @@ def cfg():
     return c
 
 
-def allow(kind, stake):
-    """-> (ok, reason). PAPER trades only check open-trade count; LIVE trades check every rule."""
+def allow(kind, stake, strategy=None):
+    """-> (ok, reason). PAPER trades only check open-trade count; LIVE trades check every rule.
+    strategy= counts only that strategy's open trades (Phase 2 sleeves hold one month-long record each)."""
     c = cfg(); now = datetime.datetime.now(CT)
     if c.get("halted_until") and now.isoformat() < c["halted_until"]:
         return False, "halted until %s" % c["halted_until"]
-    if len([r for r in ledger.open_trades() if r["kind"] == kind]) >= c["max_open_trades"]:
+    if len([r for r in ledger.open_trades(strategy) if r["kind"] == kind]) >= c["max_open_trades"]:
         return False, "max open trades (%d)" % c["max_open_trades"]
     if kind == "PAPER":
         return True, "paper"

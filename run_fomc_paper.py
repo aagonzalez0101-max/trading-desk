@@ -17,12 +17,15 @@ import pandas as pd
 
 from bot.alpaca import Paper
 from bot.ledger import Ledger
+from core import ledger
+from core.notify import send as notify
 from run_alpaca_paper import fill_info, log
 from run_round3 import FOMC_ANNOUNCE
 
 NY = ZoneInfo("America/New_York")
 SYM = "SPY"
 WINDOW = ((13, 50), (13, 58))      # act between 1:50 and 1:58pm ET
+FOMC_SLEEVE = 1000.0               # the 10% of the $10k account that run_phase2.py leaves free
 UPCOMING = ["2026-10-28", "2026-12-09", "2027-01-27", "2027-03-17", "2027-04-28", "2027-06-09",
             "2027-07-28", "2027-09-15", "2027-10-27", "2027-12-08"]   # 2027 tentative per the Fed
 ANNOUNCE = sorted({pd.Timestamp(d).date() for d in FOMC_ANNOUNCE + UPCOMING})
@@ -60,6 +63,10 @@ def act(api: Paper, led: Ledger, action: str, a):
         if float(o.get("filled_qty") or 0) > 0:
             led.fill(SYM, float(o["filled_qty"]), float(o["filled_avg_price"]), "STRATEGY", f"pre-FOMC buy for {a}")
             led.save()
+            with ledger.using(ledger.PHASE2):
+                ledger.open_trade("PAPER", "STRATEGY", "fomc_drift@10k", "alpaca", SYM, "LONG", float(o["filled_qty"]),
+                                  float(o["filled_avg_price"]), spend, note=f"day before {a} statement")
+            notify("FILL", f"FOMC drift: bought {float(o['filled_qty']):.4f} SPY @ ${float(o['filled_avg_price']):.2f} (${spend:,.2f}, paper)")
         print(f"Bought {o.get('filled_qty')} {SYM} @ {o.get('filled_avg_price')} (${spend}), status {o['status']}")
     elif action == "sell" and led.qty(SYM) > 0:
         o = api.wait_filled(api.sell(SYM, f"{led.qty(SYM):.9f}")["id"])
@@ -68,6 +75,10 @@ def act(api: Paper, led: Ledger, action: str, a):
         if float(o.get("filled_qty") or 0) > 0:
             pnl = led.fill(SYM, -float(o["filled_qty"]), float(o["filled_avg_price"]), "STRATEGY", f"pre-FOMC sell {a}")
             led.save()
+            with ledger.using(ledger.PHASE2):
+                for r in ledger.open_trades("fomc_drift@10k"):
+                    ledger.close_trade(r["id"], exit=float(o["filled_avg_price"]), net=pnl, note=f"sold before {a} 2pm statement")
+            notify("EXIT", f"FOMC drift: sold SPY @ ${float(o['filled_avg_price']):.2f}, P&L ${pnl:+.2f} (paper)")
             print(f"Sold {o.get('filled_qty')} {SYM} @ {o.get('filled_avg_price')}: P&L ${pnl:+.4f}, ledger cash ${led.cash:.2f}")
     else:
         print(f"Nothing to do ({action}, holding {led.qty(SYM):.6f} {SYM}).")
@@ -78,7 +89,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--wait", action="store_true")
     args = ap.parse_args()
-    api, led = Paper(), Ledger("fomc")
+    api, led = Paper("10k"), Ledger("fomc", start=FOMC_SLEEVE)     # user 11/22: FOMC is a sleeve in the $10k Main account
     while True:
         now = datetime.now(NY)
         action, a = plan(api, now)

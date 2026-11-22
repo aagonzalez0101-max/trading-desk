@@ -69,12 +69,15 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
 
 ## Research queue -- Phase 2 (one item per week, in parallel)
 
-**Build first: `research/TASK_PHASE2_ARENA.md`** (paper arena + GitHub schedule; the user asked for it 11/22).
+**BUILT 11/22** (`research/TASK_PHASE2_ARENA.md`): `run_phase2_backtest.py` -> `run_phase2.py` arena -> `.github/workflows/phase2.yml`
+(weekdays 21:30 UTC + FOMC check) -> monthly/quarterly grading in `results/phase2_reviews.md`. Status + normal bands:
+`results/PHASE2_STATUS.md`. 11/22 verdicts: risk_parity8 PASS (paper sleeve in both accounts); tsmom_etf8 FAIL (placebo 82%),
+tsmom_wide25 FAIL, dual_momentum FAIL. Do NOT run run_phase2.py locally -- the Action owns its state (it refuses outside Actions).
 
-1. **Time-series trend following on liquid ETFs** (SPY, QQQ, TLT, GLD, USO, EFA, ...): 3-12 month momentum with a volatility
+1. ~~Time-series trend following on liquid ETFs~~ DONE 11/22 (FAIL, see above). **Time-series trend following on liquid ETFs** (SPY, QQQ, TLT, GLD, USO, EFA, ...): 3-12 month momentum with a volatility
    target, monthly rebalance, 20+ years of free daily data (`bot/data.py`, `data/etf_daily.csv`), costs in, walk-forward by decade.
 2. **Cross-asset trend on futures proxies** (rates, commodities, currencies via ETFs) -- the classic CTA portfolio, small version.
-3. **Dual momentum / risk-parity core** as the "Phase 3 engine" baseline: what it does vs plain buy-and-hold, drawdowns included.
+3. ~~Dual momentum / risk-parity core~~ DONE 11/22 (dual FAIL, risk parity PASS -> paper). **Dual momentum / risk-parity core** as the "Phase 3 engine" baseline: what it does vs plain buy-and-hold, drawdowns included.
 4. **Swing mean-reversion on large caps** (2-10 day holds, RSI(2)-style) with realistic costs and the PDT rule in mind.
 Each must beat buy-and-hold on risk-adjusted terms (Sharpe and worst drawdown), not just make money.
 

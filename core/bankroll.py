@@ -30,7 +30,8 @@ def main(post=False):
     b, bdate = betting(); t, paper = trading()
     total = (b or 0) + t
     lines = ["BANKROLL %s" % datetime.date.today().isoformat(),
-             "  betting (PrizePicks, as of %s): $%.2f" % (bdate, b or 0),
+             ("  betting (PrizePicks, as of %s): $%.2f" % (bdate, b) if b is not None else
+              "  betting (PrizePicks): not visible from here (cloud run) -- the betting desk reports it"),
              "  trading LIVE: $%.2f   (paper P/L to date: $%+.2f, not money)" % (t, paper),
              "  TOTAL: $%.2f" % total]
     print("\n".join(lines))
