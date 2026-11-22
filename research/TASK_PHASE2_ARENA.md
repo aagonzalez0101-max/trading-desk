@@ -10,7 +10,9 @@ graded on a schedule, while he works Phase 1 (PrizePicks) hands-on in the bettin
   optional NOTIFY_JSON (contents of notify.json). Never commit .env or notify.json.
 
 ## Paper accounts (user 11/22, Alpaca allows 3)
-- EXISTING account (keys = ALPACA_API_KEY/ALPACA_SECRET_KEY in .env): keeps the pre-FOMC drift test -- don't trade Phase 2 in it.
+- User 11/22: ONLY TWO paper accounts now ($500 + $10k); the old one is gone. The pre-FOMC drift test moves into the $10k account
+  as its own ledger sleeve (bot/ledger.py `fomc`), separate from the Phase 2 sleeves. Secrets are in local .env (ALPACA_SECRET_500,
+  ALPACA_SECRET_10K); the KEY ids (PK...) were still missing at handoff -- ask the user. GitHub secrets: the user adds them himself.
 - NEW "Scar OGC" = Real-Start, $500 -> secrets ALPACA_KEY_500 / ALPACA_SECRET_500. What the first real transfer would do:
   fractional shares, $1 minimums, rounding -- small-account frictions show up here.
 - NEW "Phase 2 Main", $10,000 -> secrets ALPACA_KEY_10K / ALPACA_SECRET_10K. The main record.
