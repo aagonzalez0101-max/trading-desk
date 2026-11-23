@@ -68,6 +68,11 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
       Poisson from the player's per-minute rate x projected minutes; yards -> empirical distribution), compare to each line's price,
       and take ONLY the single max-EV line if EV >= 3% after fees. Close calls usually = no bet: buying a line down costs more than
       it's worth on most ladders (alt lines carry extra cut). Never pick a line for "safety" -- pick it for EV.
+   a3. PRE-BET CONTEXT CHECK (user 11/22): before any player-prop or ML bet, check ESPN injuries -- the player's own status
+      (skip OUT/doubtful/questionable/day-to-day) and NEW teammate absences (a rotation teammate OUT who played the last game breaks
+      UNDERS and boosts usage; skip unders then). Same logic as ../sports betting/_guardian.py. Log the check result with the bet.
+   a4. AUDIT TRAIL: every bet row logs price, fair price, sources/books, edge, stake, and the context-check result, so the
+      betting-desk session can audit each bet afterwards and flag mistakes; fixes it writes into this plan get built next.
    b. Sizing for this $40 micro-bankroll (user wants it aggressive): half-Kelly, cap 5% of the venue's bankroll per bet, -15% daily
       stop, HARD FLOOR: if a venue drops to $10, stop that venue and report. Set via guard.json for these venues only.
    c. Runs PAPER and LIVE side by side from day 1: paper logs every signal; LIVE only after the user moves the money and puts the
