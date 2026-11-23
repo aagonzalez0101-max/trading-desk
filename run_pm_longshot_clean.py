@@ -16,6 +16,7 @@ import run_pm_longshot as OLD
 K = "https://api.elections.kalshi.com/trade-api/v2"
 OUT = "data/pm_longshot_c"
 PREVOL, LEAD, SLIP = 500, 24 * 3600, 0.01
+FAILED = []
 
 
 def fetch(days=30):
@@ -33,7 +34,10 @@ def fetch(days=30):
                 p = dict(series_ticker=st, status="settled", limit=1000, min_close_ts=lo, max_close_ts=hi)
                 if cur:
                     p["cursor"] = cur
-                j = get(K + "/markets", **p) or {}
+                try:
+                    j = get(K + "/markets", **p) or {}
+                except RuntimeError:                     # Kalshi blip: skip the rest of this series, count it
+                    FAILED.append(st); break
                 for m in j.get("markets", []):
                     try:
                         v = float(m.get("volume_fp") or 0)
@@ -51,6 +55,7 @@ def fetch(days=30):
                 ms += r
                 if i % 2000 == 0:
                     print(" series", i, "markets", len(ms), flush=True)
+        print("series that failed after retries:", len(FAILED), flush=True)
         json.dump(ms, open(mf, "w"))
     ms = sample(json.load(open(mf)))
     print("sampled markets", len(ms), "events", len({m["event_ticker"] for m in ms}), flush=True)
@@ -60,8 +65,11 @@ def fetch(days=30):
         if os.path.exists(f):
             return
         T = ts(m["close_time"]) - LEAD
-        j = get(f"{K}/series/{m['event_ticker'].split('-')[0]}/markets/{m['ticker']}/candlesticks",
+        try:
+            j = get(f"{K}/series/{m['event_ticker'].split('-')[0]}/markets/{m['ticker']}/candlesticks",
                 start_ts=int(T - 24 * 3600), end_ts=int(T + 3600), period_interval=60)
+        except RuntimeError:
+            return                                       # retried next run (no file written)
         c = [(x["end_period_ts"], (x.get("yes_ask") or {}).get("close_dollars"), (x.get("yes_bid") or {}).get("close_dollars"),
               float(x.get("volume_fp") or 0)) for x in (j or {}).get("candlesticks", [])]
         json.dump(c, open(f, "w"))
