@@ -1,0 +1,22 @@
+C:\Users\aagon\Desktop\trading desk\run_pm_props.py:120: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+  out.append(dict(ev=m["ev"], ser=m["ser"], day=datetime.datetime.utcfromtimestamp(t).date().isoformat(), t=t, side=side,
+PM-10 trades 31 in 30 events
+  per contract: net $-4.03 avg -0.1299; won 19.4% vs Pinnacle-expected 37.0% at avg cost 0.300; median 283 min before start
+  KXNBAPTS      n=   3 net $  +0.67 avg +0.2232 win 67%
+  KXNBAREB      n=   2 net $  +0.17 avg +0.0835 win 50%
+  KXNBAAST      n=   4 net $  +0.01 avg +0.0026 win 50%
+  KXNBA3PT      n=   3 net $  -1.31 avg -0.4363 win 0%
+  KXNHLAST      n=   3 net $  -0.94 avg -0.3143 win 0%
+  KXNHLGOAL     n=  13 net $  -2.57 avg -0.1975 win 0%
+  KXNFLREC      n=   3 net $  -0.05 avg -0.0182 win 33%
+  YES n=23 net $-2.73 avg -0.1186
+  NO n=8 net $-1.30 avg -0.1626
+PM-10 kalshi props vs Pinnacle, per EVENT totals ($ per 1 contract each)
+  first half : n=15 net $-3.41 avg -0.2274 win 13% t -2.82
+  second half: n=15 net $-0.62 avg -0.0411 win 27% t -0.43
+  all        : n=30 net $-4.03 avg -0.1342 win 20% t -2.10  perm p=0.978  -> FAIL
+  edge >= 2.4c: events 49 net $-5.57 t -2.08
+  edge >= 3.6c: events 21 net $-4.17 t -2.81
+  edge >= 5.0c: events 9 net $-0.74 t -0.64
+  placebo (other side): events 30 net $+1.83 t +0.95
+  days 16; drop best 2 days: $-4.03 -> $-5.22

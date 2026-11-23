@@ -77,6 +77,10 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
       model's top 10), log the REAL Kalshi/Polymarket price at the main line AND every alt line listed. Betting-desk backtest with
       made-up prices: main line +17% (62% hit), 1-point alt +12% top-3, 2+ points ~break-even; top-3 alt parlays +20-66% on n=15-21.
       Two weeks of real prices decide whether model legs go to Kalshi (main line first, alt max 1 point, parlays only if they hold).
+   **11/23 EVIDENCE for (a): PM-10 FAIL** (`run_pm_props.py`): Kalshi player props sit a median 1.2c from Pinnacle fair (14,030 pregame pairs,
+   spread 2c); only 0.25% clear 3c after fees, and those 31 lost. With PM-1/PM-2 (game lines) that means a Pinnacle-vs-exchange 3% scanner
+   would basically never fire on Kalshi. Still untested: Polymarket props (PM-11, next) and -- the real candidate -- the betting desk's own
+   model vs Kalshi prices (a5). Build a5's price log FIRST; the scanner only matters if a5 or PM-11 shows an edge.
    b. Sizing for this $40 micro-bankroll (user wants it aggressive): half-Kelly, cap 5% of the venue's bankroll per bet, -15% daily
       stop, HARD FLOOR: if a venue drops to $10, stop that venue and report. Set via guard.json for these venues only.
    c. Runs PAPER and LIVE side by side from day 1: paper logs every signal; LIVE only after the user moves the money and puts the
