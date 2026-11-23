@@ -73,6 +73,10 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
       UNDERS and boosts usage; skip unders then). Same logic as ../sports betting/_guardian.py. Log the check result with the bet.
    a4. AUDIT TRAIL: every bet row logs price, fair price, sources/books, edge, stake, and the context-check result, so the
       betting-desk session can audit each bet afterwards and flag mistakes; fixes it writes into this plan get built next.
+   a5. MODEL-LEG PRICE LOG (betting desk 11/22): every night, for each leg in ../sports betting/prop_model_paper.jsonl (the NBA/NHL
+      model's top 10), log the REAL Kalshi/Polymarket price at the main line AND every alt line listed. Betting-desk backtest with
+      made-up prices: main line +17% (62% hit), 1-point alt +12% top-3, 2+ points ~break-even; top-3 alt parlays +20-66% on n=15-21.
+      Two weeks of real prices decide whether model legs go to Kalshi (main line first, alt max 1 point, parlays only if they hold).
    b. Sizing for this $40 micro-bankroll (user wants it aggressive): half-Kelly, cap 5% of the venue's bankroll per bet, -15% daily
       stop, HARD FLOOR: if a venue drops to $10, stop that venue and report. Set via guard.json for these venues only.
    c. Runs PAPER and LIVE side by side from day 1: paper logs every signal; LIVE only after the user moves the money and puts the
