@@ -1,0 +1,30 @@
+PM-8c markets with >= 500 contracts traded in the 24h before the decision: 2983
+  YES ask  0- 3c: n=  501  avg ask 0.014  YES won 0.012
+  YES ask  3- 6c: n=  176  avg ask 0.049  YES won 0.028
+  YES ask  6-10c: n=  187  avg ask 0.084  YES won 0.080
+  YES ask 10-20c: n=  305  avg ask 0.154  YES won 0.111
+  YES ask 40-60c: n=  747  avg ask 0.505  YES won 0.482
+  YES ask 80-90c: n=   84  avg ask 0.865  YES won 0.833
+  YES ask 90-97c: n=   75  avg ask 0.941  YES won 0.960
+  YES ask 97-100c: n=  120  avg ask 0.992  YES won 0.942
+
+rule 1 NO on YES<=10c: trades 510 in 287 events
+  per contract net $-9.47 avg -0.0186 won 95.5% at avg cost 0.961
+PM-8c rule 1: BUY NO when YES ask <= 10c (per EVENT totals; needs t >= 2.5 with two rules)
+  first half : n=143 net $-10.90 avg -0.0763 win 72% t -2.46
+  second half: n=144 net $+1.44 avg +0.0100 win 85% t +0.64
+  all        : n=287 net $-9.47 avg -0.0330 win 79% t -1.89  perm p=0.972  -> FAIL
+  drop best 2 days: $-9.47 -> $-11.44
+
+rule 2 YES on 5-20c: trades 547 in 344 events
+  per contract net $-25.59 avg -0.0468 won 9.1% at avg cost 0.121
+PM-8c rule 2: BUY YES when YES ask 5-20c (per EVENT totals; needs t >= 2.5 with two rules)
+  first half : n=172 net $-9.56 avg -0.0556 win 13% t -1.65
+  second half: n=172 net $-16.02 avg -0.0931 win 12% t -3.54
+  all        : n=344 net $-25.59 avg -0.0744 win 13% t -3.49  perm p=1.000  -> FAIL
+  drop best 2 days: $-25.59 -> $-28.89
+  rule 1 cut 8c: events 246 net $-6.44 t -1.59
+  rule 1 cut 12c: events 321 net $-8.97 t -1.66
+  rule 2 4-16c: events 314 net $-22.83 t -3.61
+  rule 2 6-24c: events 361 net $-32.45 t -3.90
+  placebo NO on 40-60c: events 472 net $-17.47 t -1.05

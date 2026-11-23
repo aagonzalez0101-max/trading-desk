@@ -17,6 +17,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write                 # to start its own next run (GitHub's cron never fired here)
 
 jobs:
   collect:
@@ -39,3 +40,8 @@ jobs:
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -m "speed data: $(date -u +'%Y-%m-%d %H:%M') UTC"
           for i in 1 2 3 4 5; do git pull --rebase && git push && break; sleep 10; done
+      - name: Start the next collector run (self-chaining; the cron never fired)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run speed.yml --ref main

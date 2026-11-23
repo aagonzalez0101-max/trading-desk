@@ -3,6 +3,7 @@
 #   ALPACA_KEY_500 / ALPACA_SECRET_500 ($500 Real-Start), ALPACA_KEY_10K / ALPACA_SECRET_10K ($10k Main), NOTIFY_JSON (optional)
 # The runner commits results/ back so the next run (and the betting-desk session) sees the sleeves.
 name: phase2-arena
+run-name: "phase2 ${{ inputs.job || github.event.schedule || github.event_name }}"   # kicker.py reads this to avoid double starts
 
 on:
   schedule:
@@ -59,7 +60,7 @@ jobs:
         run: python run_phase2.py --review ${{ inputs.job == 'quarterly' && 'quarterly' || '' }}
 
       - name: Weekly summary (Mondays)
-        if: github.event.schedule == '30 21 * * 1-5' && github.event_name == 'schedule'
+        if: github.event.schedule == '30 21 * * 1-5' || inputs.job == 'daily'
         run: |
           if [ "$(date -u +%u)" = "1" ]; then python daily.py --post; fi
 

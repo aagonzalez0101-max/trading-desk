@@ -1,0 +1,35 @@
+# KICKER -- the scheduler that actually fires. GitHub's cron never triggered in this repo (11/22-23), so this job runs ~5.7h,
+# starts phase2.yml at its times (kicker.py: FOMC 17:15 UTC, daily 21:30 UTC, weekdays), then starts its own next run.
+# workflow_dispatch calls made with the job's token DO create runs, so the chain keeps itself alive with no PC and no cron.
+name: kicker
+run-name: kicker
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 */6 * * *"       # backup only, in case the chain ever breaks and cron starts working
+  push:
+    branches: [main]
+    paths: [".github/workflows/kicker.yml", "kicker.py"]
+
+concurrency:
+  group: kicker
+  cancel-in-progress: false
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  kick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start the trading runs on time for ~5.6 hours
+        run: python kicker.py 335
+      - name: Start the next kicker run (keeps the chain alive)
+        if: always()
+        run: gh workflow run kicker.yml --ref main
