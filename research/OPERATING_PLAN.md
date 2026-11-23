@@ -59,6 +59,12 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
 
 ## Research queue -- Phase 1 (top = next)
 
+0. **TOP PRIORITY (user 11/22 night): Polymarket sports bot, PAPER first.** Every few minutes: Polymarket game ML + any player-prop
+   markets vs Pinnacle de-vigged fair price (free: ../sports betting/_polymarket.py + betting/freeodds.py). Paper-bet only when the
+   Polymarket price beats fair by more than fees+spread; log via core/ledger (PAPER/STRATEGY), settle on resolution. Verdict after
+   100+ paper bets (t >= 2). On a PASS: tell the user -> he moves $20 to Polymarket and adds the wallet key to .env HIMSELF; the bot
+   then trades live inside core/guard (2%/bet, -6%/day). He wants zero input after that. Never handle his private key.
+
 1. ~~Kalshi game moneylines vs Pinnacle~~ **FAIL 11/22** (`run_pm_sharp_study.py`: Kalshi ask within ~1c of Pinnacle fair, 11,080 quotes; after fees 0.15% of quotes clear 3c). PM-2 Polymarket game moneylines vs Pinnacle **FAIL 11/22** (`run_pm_poly_study.py`: 7,810 pairs, 99th pct gap +2.1c, 0 trades). Pregame sports moneylines on BOTH exchanges sit on the sharp line; only a speed (news) edge could remain.
    **Kalshi/Polymarket event + sports markets vs a sharp reference** -- de-vigged Pinnacle prices from the betting desk's free
    pipeline (`../sports betting/betting/freeodds.py`, `_polymarket.py`, Kalshi public API). Edge = prediction-market prices that
