@@ -35,7 +35,7 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: Secrets to local files (never committed: .env and notify.json are gitignored)
+      - name: "Secrets to local files (never committed - .env and notify.json are gitignored)"
         env:
           K500: ${{ secrets.ALPACA_KEY_500 }}
           S500: ${{ secrets.ALPACA_SECRET_500 }}
@@ -46,7 +46,7 @@ jobs:
           printf 'ALPACA_KEY_500=%s\nALPACA_SECRET_500=%s\nALPACA_KEY_10K=%s\nALPACA_SECRET_10K=%s\n' "$K500" "$S500" "$K10K" "$S10K" > .env
           if [ -n "$NOTIFY_JSON" ]; then printf '%s' "$NOTIFY_JSON" > notify.json; fi
 
-      - name: FOMC drift (acts only on the day before / day of an announcement, 1:50-1:58pm ET)
+      - name: "FOMC drift (acts only on the day before or day of an announcement, 1:50-1:58pm ET)"
         if: github.event.schedule == '15 17,18 * * 1-5' || inputs.job == 'fomc'
         run: python run_fomc_paper.py --wait
 
