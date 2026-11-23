@@ -5,7 +5,7 @@ name: speed-collector
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "17 */6 * * *"      # off the top of the hour: GitHub delays/drops :00 schedules under load
   workflow_dispatch:
 
 concurrency:
