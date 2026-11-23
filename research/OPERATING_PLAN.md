@@ -59,12 +59,17 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
 
 ## Research queue -- Phase 1 (top = next)
 
-0. **TOP PRIORITY (user 11/22 night): Polymarket sports bot, PAPER first.** Every few minutes: Polymarket game ML + any player-prop
-   markets vs Pinnacle de-vigged fair price (free: ../sports betting/_polymarket.py + betting/freeodds.py). Paper-bet only when the
-   Polymarket price beats fair by more than fees+spread; log via core/ledger (PAPER/STRATEGY), settle on resolution. Verdict after
-   100+ paper bets (t >= 2). On a PASS: tell the user -> he moves $20 to Polymarket and adds the wallet key to .env HIMSELF; the bot
-   then trades live inside core/guard (2%/bet, -6%/day). He wants zero input after that. Never handle his private key.
-
+0. **TOP PRIORITY (user 11/22 night): the AGGRESSIVE prediction-market bot -- Polymarket + Kalshi, $20 each, ML + alt
+   props only, fully automated, zero user input.** PrizePicks is untouched (betting desk). Build:
+   a. Scanner every few minutes: Polymarket + Kalshi game ML, spreads/alt lines and player-prop markets vs Pinnacle de-vigged fair
+      (free: ../sports betting/_polymarket.py, betting/freeodds.py, Kalshi public API). VALUE = market price beats fair by >= 3%
+      AFTER fees + spread. No value -> no bet (the user said "only whenever the value is there").
+   b. Sizing for this $40 micro-bankroll (user wants it aggressive): half-Kelly, cap 5% of the venue's bankroll per bet, -15% daily
+      stop, HARD FLOOR: if a venue drops to $10, stop that venue and report. Set via guard.json for these venues only.
+   c. Runs PAPER and LIVE side by side from day 1: paper logs every signal; LIVE only after the user moves the money and puts the
+      Kalshi API key / Polymarket wallet key in .env HIMSELF and sets live_enabled. Never handle his keys.
+   d. Report weekly: bets, hit rate, CLV (did the price move toward us after entry), $ per venue. Scale = PrizePicks surplus via
+      core/transfers.py, only when the live record beats the bar (100+ bets, t >= 2, positive CLV).
 1. ~~Kalshi game moneylines vs Pinnacle~~ **FAIL 11/22** (`run_pm_sharp_study.py`: Kalshi ask within ~1c of Pinnacle fair, 11,080 quotes; after fees 0.15% of quotes clear 3c). PM-2 Polymarket game moneylines vs Pinnacle **FAIL 11/22** (`run_pm_poly_study.py`: 7,810 pairs, 99th pct gap +2.1c, 0 trades). Pregame sports moneylines on BOTH exchanges sit on the sharp line; only a speed (news) edge could remain.
    **Kalshi/Polymarket event + sports markets vs a sharp reference** -- de-vigged Pinnacle prices from the betting desk's free
    pipeline (`../sports betting/betting/freeodds.py`, `_polymarket.py`, Kalshi public API). Edge = prediction-market prices that
