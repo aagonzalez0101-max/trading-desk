@@ -112,6 +112,16 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
 12. **PM-9 'near-certain' carry on Polymarket**: buy 95-99c outcomes days before resolution; does the hit rate beat the price after the rare blowups?
 10. Polymarket 5-min up/down late-window lag vs Coinbase (needs second-level data, bots compete) -- lowest.
 
+## Kalshi niche queue (betting desk 11/23, after a full scan of 8,000 open events)
+- K1 (running on the betting desk): NBA player props vs the prop model -> `../sports betting/_kalshi_paper.py`, kalshi_paper.jsonl.
+- K2: NICHE SPORTS WE ALREADY MODEL -- Kalshi CS2 (147 series), tennis (145), table tennis (13), golf (128). Match each open market to
+  the betting desk's models (cs2_paper.jsonl lowers w/ edge, `_tennis_pp.py` Pinnacle-fitted probs, `_tabletennis.py` bo5 under rates,
+  `_golf_holes.py`), paper-bet $1 when model p beats price+fee by 3+ pts. Thin markets = where mispricing lives.
+- K3: NBA/NHL quarter & period totals vs Pinnacle quarter lines -- PP period props lean UNDER (2H unders 55.8%, filtered 59.7%); test
+  whether Kalshi quarter totals carry the same tilt.
+- K4/K5 = PM-8 longshot bias (buy NO on 3-10c longshots, huge election volume) and PM-9 near-certain carry.
+- Skip: Oscars/Coachella/GTA/cabinet (insider-driven), game ML/spreads, BTC ladders, temps (all tested/failed or no data edge).
+
 ## Research queue -- Phase 2 (one item per week, in parallel)
 
 **BUILT 11/22** (`research/TASK_PHASE2_ARENA.md`): `run_phase2_backtest.py` -> `run_phase2.py` arena -> `.github/workflows/phase2.yml`
