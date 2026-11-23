@@ -1,0 +1,21 @@
+PM-8 markets with a quote 24h out: 2693
+  YES ask  0- 3c: n=  224  avg ask 0.011  YES actually won 0.013
+  YES ask  3- 6c: n=  106  avg ask 0.051  YES actually won 0.075
+  YES ask  6-10c: n=  167  avg ask 0.086  YES actually won 0.114
+  YES ask 10-20c: n=  296  avg ask 0.152  YES actually won 0.209
+  YES ask 40-60c: n=  628  avg ask 0.502  YES actually won 0.559
+  YES ask 80-90c: n=  124  avg ask 0.858  YES actually won 0.774
+  YES ask 90-97c: n=  105  avg ask 0.942  YES actually won 0.857
+  YES ask 97-100c: n=   86  avg ask 0.991  YES actually won 0.942
+PM-8 trades 320 in 156 events, 109 series
+  per contract: net $-18.83 avg -0.0589, NO won 91.2% at avg cost 0.959
+  top series: KXNFLTD 30 ($-0.14), KXNBASPREAD 25 ($+0.47), KXPGATOUR 15 ($+0.33), KXLIGAMXSCORE 15 ($-0.53), KXNFLRECYDS 14 ($-3.49), KXEPLSPREAD 9 ($-0.73), KXNFLFIRSTTD 8 ($+0.22), KXNFLSPREAD 8 ($+0.31)
+PM-8 kalshi_longshot_no, per EVENT totals ($ per 1 contract each)
+  first half : n=78 net $-7.53 avg -0.0965 win 79% t -1.90
+  second half: n=78 net $-11.31 avg -0.1449 win 71% t -2.40
+  all        : n=156 net $-18.83 avg -0.1207 win 75% t -3.07  perm p=1.000  -> FAIL
+  cut 8c: events 122 net $-14.14 t -2.89
+  cut 12c: events 177 net $-27.18 t -3.88
+  placebo (NO on 40-60c): events 343 net $-83.34 t -4.53
+  days 28; drop best 2 days: $-18.83 -> $-19.60
+  excluding crypto ladders: events 156 net $-18.83 t -3.07

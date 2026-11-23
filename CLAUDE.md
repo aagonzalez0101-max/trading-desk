@@ -24,6 +24,7 @@ No caution lectures (he set this on the betting desk 2026-09-15): state a risk o
 - **Measure, don't assume.** Report the number AND the sample. Run a t-test / permutation test; say "not significant" out loud.
 - **Every rule is pre-declared, then walk-forward tested:** it must win in BOTH halves of the data, after ALL costs (spread, fees,
   slippage). `core/backtest.py report()` is the bar: n >= 100, both halves positive, t >= 2, permutation p < .05.
+- **Filter only on what was knowable at the decision** (11/22: a lifetime-volume filter quietly selected longshots that later came alive).
 - **Huge returns are a bug** (look-ahead, a live price in history, survivorship). Investigate before presenting.
 - **Changing a rule after looking = a new strategy.** The running tally of everything tried is `results/sweep_log.csv` -- add to it.
 - **Paper first, always.** A strategy goes PAPER -> 100 live paper trades with avg > 0 and t >= 2 -> LIVE at the guard's size.

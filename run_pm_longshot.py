@@ -20,27 +20,38 @@ def fetch(days=30):
     if os.path.exists(mf):
         ms = json.load(open(mf))
     else:
-        ms, cur, pages = [], None, 0
         hi = int(time.time()); lo = hi - days * 86400
-        while True:
-            p = dict(status="settled", limit=1000, min_close_ts=lo, max_close_ts=hi)
-            if cur:
-                p["cursor"] = cur
-            j = get(K + "/markets", **p) or {}
-            for m in j.get("markets", []):
-                try:
-                    v = float(m.get("volume_fp") or 0)
-                except ValueError:
-                    v = 0
-                if v >= MINVOL and m.get("market_type") == "binary" and m.get("result") in ("yes", "no"):
-                    ms.append({k: m.get(k) for k in ("ticker", "event_ticker", "result", "open_time", "close_time", "title")} | {"vol": v})
-            cur = j.get("cursor"); pages += 1
-            if pages % 50 == 0:
-                print(" pages", pages, "kept", len(ms), flush=True)
-            if not cur or not j.get("markets"):
-                break
+        ser = [x["ticker"] for x in (get(K + "/series") or {}).get("series", [])
+               if x.get("category") != "Crypto" and x.get("frequency") not in ("hourly", "fifteen_min")]
+        print("series", len(ser), flush=True)
+
+        def one_series(st):
+            out, cur = [], None
+            for _ in range(50):
+                p = dict(series_ticker=st, status="settled", limit=1000, min_close_ts=lo, max_close_ts=hi)
+                if cur:
+                    p["cursor"] = cur
+                j = get(K + "/markets", **p) or {}
+                for m in j.get("markets", []):
+                    try:
+                        v = float(m.get("volume_fp") or 0)
+                    except ValueError:
+                        v = 0
+                    if v >= MINVOL and m.get("market_type") == "binary" and m.get("result") in ("yes", "no"):
+                        out.append({k: m.get(k) for k in ("ticker", "event_ticker", "result", "open_time", "close_time", "title")} | {"vol": v})
+                cur = j.get("cursor")
+                if not cur or not j.get("markets"):
+                    break
+            return out
+        ms = []
+        with ThreadPoolExecutor(8) as ex:
+            for i, r in enumerate(ex.map(one_series, ser)):
+                ms += r
+                if i % 2000 == 0:
+                    print(" series", i, "markets kept", len(ms), flush=True)
         json.dump(ms, open(mf, "w"))
     ms = [m for m in ms if ts(m["close_time"]) - ts(m["open_time"]) > LEAD + 3600]
+    ms = sample(ms)
     print("markets kept", len(ms), "events", len({m["event_ticker"] for m in ms}), flush=True)
 
     def one(m):
@@ -57,12 +68,19 @@ def fetch(days=30):
         list(ex.map(one, ms))
 
 
+def sample(ms, share=0.15, seed=8):
+    """seeded random share of EVENTS (all markets of a sampled event kept) -- amendment #2, logged before any price was seen."""
+    import random
+    ev = sorted({m["event_ticker"] for m in ms}); keep = set(random.Random(seed).sample(ev, int(len(ev) * share)))
+    return [m for m in ms if m["event_ticker"] in keep]
+
+
 def fee(c):
     return 0.07 * c * (1 - c)
 
 
 def run(cut=0.10, band=None):
-    ms = json.load(open(os.path.join(OUT, "markets.json")))
+    ms = sample(json.load(open(os.path.join(OUT, "markets.json"))))
     out = []; buckets = []
     for m in ms:
         f = os.path.join(OUT, "c", m["ticker"].replace("/", "_") + ".json")
