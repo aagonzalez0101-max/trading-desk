@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: "17 */6 * * *"      # off the top of the hour: GitHub delays/drops :00 schedules under load
   workflow_dispatch:
+  push:                          # editing THIS file starts a run right away (the cron never fired on 11/23)
+    branches: [main]
+    paths: [".github/workflows/speed.yml"]
 
 concurrency:
   group: speed-collector        # separate from the trading runs so it never blocks them
