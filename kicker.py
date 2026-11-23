@@ -22,7 +22,7 @@ def ran_today(job, now):
     if code:
         return True                                   # can't tell -> don't risk a storm of dispatches
     day = now.date().isoformat()
-    sched = {"fomc": "15 17,18", "daily": "30 21"}[job]
+    sched = {"fomc": "15 17,18", "daily": "30 21", "status": "status"}[job]
     for r in json.loads(out or "[]"):
         if r["createdAt"][:10] == day and (job in r["displayTitle"] or sched in r["displayTitle"]):
             return True
@@ -31,6 +31,10 @@ def ran_today(job, now):
 
 def tick():
     now = datetime.datetime.now(datetime.timezone.utc)
+    # daily health check: a read-only phase2 'status' run (Alpaca keys + data reachable?), once per UTC day, any time
+    if not ran_today("status", now):
+        code, out, err = gh("workflow", "run", "phase2.yml", "--ref", "main", "-f", "job=status")
+        print(now.isoformat(timespec="seconds"), "kicked phase2 status ->", code, out or err, flush=True)
     if now.weekday() >= 5:
         return
     for job, h, m in TARGETS:

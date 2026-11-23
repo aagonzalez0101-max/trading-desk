@@ -9,10 +9,13 @@ on:
   schedule:
     - cron: "30 21 * * 1-5"      # daily pass after the US close (3:30pm CT in winter, 4:30pm CT in summer)
     - cron: "15 17,18 * * 1-5"   # FOMC drift check; one of these lands before 1:50pm ET in both EST and EDT
+  push:                          # editing THIS file runs the read-only health check (verifies secrets + data right away)
+    branches: [main]
+    paths: [".github/workflows/phase2.yml"]
   workflow_dispatch:
     inputs:
       job:
-        description: "daily | fomc | review | quarterly"
+        description: "daily | fomc | status | review | quarterly"
         default: daily
 
 concurrency:
@@ -54,6 +57,10 @@ jobs:
       - name: Phase 2 daily pass
         if: github.event.schedule == '30 21 * * 1-5' || inputs.job == 'daily'
         run: python run_phase2.py
+
+      - name: Health check (read-only, no orders) -- kicker starts it once a day
+        if: inputs.job == 'status' || github.event_name == 'push'
+        run: python run_phase2.py --status
 
       - name: Phase 2 review (manual)
         if: inputs.job == 'review' || inputs.job == 'quarterly'
