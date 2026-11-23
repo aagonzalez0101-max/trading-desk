@@ -64,6 +64,10 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
    a. Scanner every few minutes: Polymarket + Kalshi game ML, spreads/alt lines and player-prop markets vs Pinnacle de-vigged fair
       (free: ../sports betting/_polymarket.py, betting/freeodds.py, Kalshi public API). VALUE = market price beats fair by >= 3%
       AFTER fees + spread. No value -> no bet (the user said "only whenever the value is there").
+   a2. ALT-LINE LADDER (user 11/22): for every prop, compute our fair P at EVERY listed line (counting stats -> negative-binomial /
+      Poisson from the player's per-minute rate x projected minutes; yards -> empirical distribution), compare to each line's price,
+      and take ONLY the single max-EV line if EV >= 3% after fees. Close calls usually = no bet: buying a line down costs more than
+      it's worth on most ladders (alt lines carry extra cut). Never pick a line for "safety" -- pick it for EV.
    b. Sizing for this $40 micro-bankroll (user wants it aggressive): half-Kelly, cap 5% of the venue's bankroll per bet, -15% daily
       stop, HARD FLOOR: if a venue drops to $10, stop that venue and report. Set via guard.json for these venues only.
    c. Runs PAPER and LIVE side by side from day 1: paper logs every signal; LIVE only after the user moves the money and puts the
