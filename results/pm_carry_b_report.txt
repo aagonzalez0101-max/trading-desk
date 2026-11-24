@@ -1,0 +1,19 @@
+PM-9b trades 1546 in 733 events (out-of-sample October)
+  avg price 0.972, cost 0.986; paid $1: 98.64%, paid 0: 1.36%, partial (50/50 etc): 0
+  per share: net $+1.21 avg +0.0008
+    paid 0.00 at 0.97: Will any AI model reach 1530 Overall Arena Score by September 30, 2026?
+    paid 0.00 at 0.95: Will fewer than 20 ships transit the Strait of Hormuz between September 28-October 4?
+    paid 0.00 at 0.95: Will Plinio Valério win the second-most votes in the 2026 Amazonas Senate election?
+    paid 0.00 at 0.98: Will Marek Zelenka be the next Mayor of Olomouc?
+    paid 0.00 at 0.96: Will Meta's Watermelon model be released on October 12, 2026?
+    paid 0.00 at 0.97: Will Doug McCallum win the 2026 Surrey mayoral election?
+    paid 0.00 at 0.97: Paris curfew by October 21?
+    paid 0.00 at 0.95: Will Amazon (AMZN) close at $245-$250 on the final day of trading of the week of Oct 19 – 
+PM-9b near-certain carry, EVENT markets, Oct 2026 out-of-sample (per EVENT)
+  first half : n=366 net $+4.12 avg +0.0113 win 83% t +1.83
+  second half: n=367 net $-2.92 avg -0.0079 win 86% t -0.66
+  all        : n=733 net $+1.21 avg +0.0016 win 84% t +0.24  perm p=0.422  -> FAIL
+  band 0.94-0.99: events 783 net $+3.18 t +0.54
+  band 0.96-0.99: events 651 net $-1.12 t -0.29
+  placebo 0.85-0.90: events 386 net $+14.75 t +2.25
+  days 31; drop best 2 days: $+1.21 -> $-2.16
