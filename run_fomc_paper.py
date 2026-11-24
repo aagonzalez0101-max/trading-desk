@@ -19,8 +19,27 @@ from bot.alpaca import Paper
 from bot.ledger import Ledger
 from core import ledger
 from core.notify import send as notify
-from run_alpaca_paper import fill_info, log
-from run_round3 import FOMC_ANNOUNCE
+import csv
+
+from bot.data import OUT
+
+# Self-contained on purpose (11/24): importing run_alpaca_paper / run_round3 pulled in yfinance, which GitHub's runner doesn't install,
+# so the FOMC step crashed in the cloud. Same log file + columns as run_alpaca_paper.log().
+LOG = OUT / "alpaca_paper_log.csv"
+LOG_COLS = ["time", "week", "action", "symbol", "why", "order_id", "status", "filled_qty", "filled_price", "notional"]
+
+
+def log(row: dict):
+    new = not LOG.exists()
+    with LOG.open("a", newline="") as f:
+        w = csv.DictWriter(f, LOG_COLS)
+        if new:
+            w.writeheader()
+        w.writerow({"time": datetime.now(NY).isoformat(timespec="seconds"), **row})
+
+
+def fill_info(o: dict) -> dict:
+    return {"order_id": o["id"], "status": o["status"], "filled_qty": o.get("filled_qty"), "filled_price": o.get("filled_avg_price")}
 
 NY = ZoneInfo("America/New_York")
 SYM = "SPY"
@@ -28,7 +47,7 @@ WINDOW = ((13, 50), (13, 58))      # act between 1:50 and 1:58pm ET
 FOMC_SLEEVE = 1000.0               # the 10% of the $10k account that run_phase2.py leaves free
 UPCOMING = ["2026-10-28", "2026-12-09", "2027-01-27", "2027-03-17", "2027-04-28", "2027-06-09",
             "2027-07-28", "2027-09-15", "2027-10-27", "2027-12-08"]   # 2027 tentative per the Fed
-ANNOUNCE = sorted({pd.Timestamp(d).date() for d in FOMC_ANNOUNCE + UPCOMING})
+ANNOUNCE = sorted({pd.Timestamp(d).date() for d in UPCOMING})          # only future meetings matter for paper trading
 
 
 def prev_trading_day(api: Paper, d):

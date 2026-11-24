@@ -88,6 +88,10 @@ def closes(api):
     start = (end - datetime.timedelta(days=520)).date()
     raw = api.daily_bars(P.UNIVERSE, start, end.isoformat(timespec="seconds").replace("+00:00", "Z"))
     df = pd.DataFrame({s: pd.Series({pd.Timestamp(d): c for d, c, _ in v}) for s, v in raw.items()}).sort_index()
+    # GitHub's cron can fire hours late (11/23: the 21:30 UTC run fired at 05:23). If a run lands while the market is open, today's daily bar is
+    # still forming -- drop it so every decision uses completed closes only, exactly like the backtest.
+    if api.clock().get("is_open") and len(df) and df.index[-1].date() == datetime.datetime.now(ZoneInfo("America/New_York")).date():
+        df = df.iloc[:-1]
     return df
 
 
