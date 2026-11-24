@@ -126,6 +126,10 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
 - K2: NICHE SPORTS WE ALREADY MODEL -- Kalshi CS2 (147 series), tennis (145), table tennis (13), golf (128). Match each open market to
   the betting desk's models (cs2_paper.jsonl lowers w/ edge, `_tennis_pp.py` Pinnacle-fitted probs, `_tabletennis.py` bo5 under rates,
   `_golf_holes.py`), paper-bet $1 when model p beats price+fee by 3+ pts. Thin markets = where mispricing lives.
+  **11/23 scoping:** Kalshi lists CS2 MATCH winners/spreads (KXCS2GAME ~200 settled/30d, $3.6M vol) and tennis match/total-games (KXWTAGTOTAL,
+  doubles) -- NOT the player-kill / fantasy props the betting desk models; the tennis archive's reference is Pinnacle (pin_win/pin_total), i.e. the
+  same exchange-vs-Pinnacle test that failed 6 times this week. K2 needs (a) a match-winner model or (b) a forward Pinnacle esports/tennis line
+  archive (no history exists). Low prior; do it only after the props scanner has a verdict.
 - K3: NBA/NHL quarter & period totals vs Pinnacle quarter lines -- PP period props lean UNDER (2H unders 55.8%, filtered 59.7%); test
   whether Kalshi quarter totals carry the same tilt.
 - K4/K5 = PM-8 longshot bias (buy NO on 3-10c longshots, huge election volume) and PM-9 near-certain carry.
