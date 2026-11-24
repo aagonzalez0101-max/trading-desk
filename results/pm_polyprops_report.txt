@@ -1,0 +1,24 @@
+  pinnacle: pregame pairs 1363, sharp - Polymarket(over) mean +0.160, abs median 0.211, 5/95th [-0.003  0.284]
+
+PM-11 vs pinnacle: trades 593 in 582 ladders
+  per share net $+101.62 avg +0.1714; won 45.2% vs pinnacle-expected 49.0% at avg cost 0.281
+PM-11 polymarket NFL props vs pinnacle, per LADDER (needs t >= 2.5)
+  first half : n=291 net $+56.90 avg +0.1955 win 47% t +6.57
+  second half: n=291 net $+44.72 avg +0.1537 win 43% t +5.14
+  all        : n=582 net $+101.62 avg +0.1746 win 45% t +8.28  perm p=0.000  -> PASS
+  edge >= 2.4c: ladders 590 net $+102.21 t +8.29
+  edge >= 3.6c: ladders 574 net $+102.16 t +8.38
+  placebo (other side): ladders 582 net $-121.81 t -9.93
+  days 31; drop best 2 days: $+101.62 -> $+70.96
+  fanduel: pregame pairs 22502, sharp - Polymarket(over) mean +0.158, abs median 0.161, 5/95th [-0.149  0.398]
+
+PM-11 vs fanduel: trades 7861 in 2212 ladders
+  per share net $+1281.37 avg +0.1630; won 50.5% vs fanduel-expected 53.6% at avg cost 0.342
+PM-11 polymarket NFL props vs fanduel, per LADDER (needs t >= 2.5)
+  first half : n=1106 net $+743.67 avg +0.6724 win 64% t +16.27
+  second half: n=1106 net $+537.70 avg +0.4862 win 57% t +11.86
+  all        : n=2212 net $+1281.37 avg +0.5793 win 61% t +19.86  perm p=0.000  -> PASS
+  edge >= 2.4c: ladders 2220 net $+1272.50 t +19.51
+  edge >= 3.6c: ladders 2207 net $+1286.88 t +20.11
+  placebo (other side): ladders 2212 net $-1551.15 t -23.72
+  days 34; drop best 2 days: $+1281.37 -> $+1036.56

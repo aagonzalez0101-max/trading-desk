@@ -1,0 +1,23 @@
+C:\Users\aagon\Desktop\trading desk\run_pm_carry.py:101: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+  out.append(dict(ev=m["ev"], day=datetime.datetime.utcfromtimestamp(m["end"]).date().isoformat(), D=D, p=p, cost=cost, won=won,
+PM-9 trades 3597 in 1210 events
+  bought at avg 0.974 (cost incl. slippage/fee 0.984), won 99.14% -> break-even needs 98.43%
+  per $1 share: net $+25.29 avg +0.0070; losers 31 (each costs ~0.98)
+    LOST at 0.96: Will Gold (XAUUSD) hit (LOW) $3,600 Week of November 16 2026?
+    LOST at 0.99: Will Gold (XAUUSD) hit (LOW) $3,550 Week of November 16 2026?
+    LOST at 0.95: Will Silver (XAGUSD) hit (LOW) $42 Week of November 16 2026?
+    LOST at 0.97: Will "A Dog's Perfect Christmas" be the top global Netflix movie this week?
+    LOST at 0.98: Will "A Dog's Perfect Christmas" be the #2 global Netflix movie this week?
+    LOST at 0.99: Will "Heartland" be the top global Netflix movie this week?
+    LOST at 0.97: Will the price of Bitcoin be less than $66,000 on November 15?
+    LOST at 0.98: Will the price of Bitcoin be above $66,000 on November 15?
+PM-9 polymarket near-certain carry, per EVENT totals ($ per share each)
+  first half : n=605 net $+17.00 avg +0.0281 win 99% t +5.83
+  second half: n=605 net $+8.30 avg +0.0137 win 96% t +1.40
+  all        : n=1210 net $+25.29 avg +0.0209 win 97% t +3.82  perm p=0.000  -> PASS
+  carry: +0.72% per 3-day hold -> +88%/yr if repeated (cash in a T-bill ~4%/yr)
+  band 0.940-0.990: events 1282 net $+27.63 t +3.47
+  band 0.960-0.990: events 1112 net $+17.57 t +3.02
+  band 0.950-0.985: events 1143 net $+26.92 t +4.55
+  placebo 0.85-0.90: events 535 net $-0.80 t -0.08
+  days 22; drop best 2 days: $+25.29 -> $+2.59

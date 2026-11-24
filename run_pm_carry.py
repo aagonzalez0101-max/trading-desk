@@ -84,6 +84,8 @@ def run(lo=0.95, hi=0.99):
         D = m["end"] - LEAD
         if m["closed"] and m["closed"] <= D:
             continue
+        if not all(os.path.exists(os.path.join(OUT, "h", t[:30] + ".json")) for t in m["toks"]):
+            continue                                     # amendment 11/23: only markets with BOTH histories fetched
         for i, tok in enumerate(m["toks"]):
             f = os.path.join(OUT, "h", tok[:30] + ".json")
             if not os.path.exists(f):
