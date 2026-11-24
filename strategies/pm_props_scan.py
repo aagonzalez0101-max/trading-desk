@@ -189,7 +189,7 @@ def once():
         books = list(ex.map(lambda m: (book(m["over"]), book(m["under"])), hit))
     os.makedirs(OUT, exist_ok=True)
     n_sig = 0
-    with gzip.open(os.path.join(OUT, ts[:10] + ".jsonl.gz"), "at", encoding="utf-8") as f, ledger.using(ledger.PROPS):
+    with gzip.open(os.path.join(OUT, f"{ts[:10]}_{os.getenv('GITHUB_RUN_ID', 'local')}.jsonl.gz"), "at", encoding="utf-8") as f, ledger.using(ledger.PROPS):
         open_syms = {r["symbol"] for r in ledger.open_trades() if r["strategy"].startswith("pm_props_scan")}
         for m, (bo, bu) in zip(hit, books):
             key = (m["who"], m["stat"], m["line"])

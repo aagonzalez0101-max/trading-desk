@@ -95,7 +95,8 @@ def once(out_dir=OUT, dedupe=True):
     os.makedirs(out_dir, exist_ok=True)
     ts = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
     n = seen = 0
-    with gzip.open(os.path.join(out_dir, ts[:10] + ".jsonl.gz"), "at", encoding="utf-8") as f:
+    run = os.getenv("GITHUB_RUN_ID", "local")            # one file per run: two runs never touch the same file (11/24 merge-conflict data loss)
+    with gzip.open(os.path.join(out_dir, f"{ts[:10]}_{run}.jsonl.gz"), "at", encoding="utf-8") as f:
         for lg, (lid, ser, tag) in LEAGUES.items():
             for src, rows in (("pin", pinnacle(lid)), ("kal", kalshi(ser)), ("poly", poly(tag))):
                 kf, vf = KEYS[src]
