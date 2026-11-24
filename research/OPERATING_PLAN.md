@@ -81,6 +81,11 @@ Phase 1 pays for Phase 2; Phase 2 research starts NOW (slowly, in parallel) so i
    spread 2c); only 0.25% clear 3c after fees, and those 31 lost. With PM-1/PM-2 (game lines) that means a Pinnacle-vs-exchange 3% scanner
    would basically never fire on Kalshi. Still untested: Polymarket props (PM-11, next) and -- the real candidate -- the betting desk's own
    model vs Kalshi prices (a5). Build a5's price log FIRST; the scanner only matters if a5 or PM-11 shows an edge.
+   **11/23 PM-11b (Polymarket NFL props, REAL traded prices):** only 16% of prop markets trade pregame; where they do, prices sit ~2c from the sharp
+   line. vs FanDuel: 49 ladders +$8.91 t 2.63 -- the first honest positive, but n<100. ACTION: build the scanner as a forward COLLECTOR first --
+   every NFL slate, log Polymarket prop best bid/ask (real book) + Pinnacle + FanDuel lines; paper-'buy' when the real ask beats the sharp fair by
+   >=3c after fee; re-test at >=100 ladders. Pinnacle props and FanDuel props must be ported from ../sports betting (_props.py, _fanduel.py) so it
+   runs on GitHub.
    b. Sizing for this $40 micro-bankroll (user wants it aggressive): half-Kelly, cap 5% of the venue's bankroll per bet, -15% daily
       stop, HARD FLOOR: if a venue drops to $10, stop that venue and report. Set via guard.json for these venues only.
    c. Runs PAPER and LIVE side by side from day 1: paper logs every signal; LIVE only after the user moves the money and puts the

@@ -68,6 +68,7 @@ SURPLUS (the betting desk's plan says above ~$5k), never the roll the model plan
 | Kalshi longshot bias (buy NO on <=10c / YES on 5-20c, all categories, clean sample) | **FAILED** 11/23: premium real (3-6c YES wins 2.8%) but ~1-3c, smaller than spread+fee; NO side -$9.47 t -1.89 | `run_pm_longshot_clean.py` |
 | Kalshi player props vs Pinnacle (NBA/NHL/NFL, 34,690 exact-line markets) | **FAILED** 11/23: Kalshi mid a median 1.2c from Pinnacle, 0.25% of pairs clear 3c after fee; 31 trades -$4.03 | `run_pm_props.py` |
 | Polymarket near-certain carry (buy 95-99c, 3 days out, all non-sports) | **FAILED on real cost** 11/23: +0.7c/trade at mid+1c, but live books show the ask +1.35c over mid -> t 1.94, drop-2-days negative. Event-only version PM-9b being tested out-of-sample (October) | `run_pm_carry.py` |
+| Polymarket NFL props vs Pinnacle/FanDuel (real trades only) | **FAILED on sample size** 11/23: only 16% of prop markets trade pregame; vs FanDuel 49 ladders +$8.91 t 2.63 (n<100). First raw-mid run was an empty-book artifact. Forward collection of real books next | `run_pm_polyprops_b.py` |
 | Kalshi "buy both sides at 49c" | **FAILED** (-$14 to -$28/day; lone losing leg fills 13%) | `run_kalshi_study.py` |
 | Seconds scalping QQQ (5 ideas) | **FAILED** (edge 0.03-0.15c vs ~2c spread) | `results/replay_scalp.csv` |
 | Forex: 19 variants, 9 chart-pattern families, Alex G rules | **ALL FAILED** after costs 2015-now | `results/sweep_log.csv`, `round5_patterns.csv` |
@@ -77,7 +78,7 @@ SURPLUS (the betting desk's plan says above ~$5k), never the roll the model plan
 | Phase 2 ETF trend (3/6/12m, 8 and 25 ETFs), dual momentum | **FAILED** (trend-8 beat only 82% of random-signal placebos; wide-25 and dual below SPY's Sharpe) | `results/phase2_backtest_report.txt` |
 | Forex paper ARENA (6 scalpers, OANDA practice) | running since 10/9, all far short of 100 trades; rsi_m5 t -3.2 | `run_arena.py --report` |
 
-Tally: **68+ ideas tested, 2 passed (FOMC drift; Phase 2 risk parity -- a slow allocation, not a trading edge).** That is the honest base rate for retail trading edges -- the next strategy
+Tally: **69+ ideas tested, 2 passed (FOMC drift; Phase 2 risk parity -- a slow allocation, not a trading edge).** That is the honest base rate for retail trading edges -- the next strategy
 needs a reason it should work (a structural edge: fees/rebates, slow-updating prices, a forced flow), not a chart pattern.
 
 # Where to look next (priority order)

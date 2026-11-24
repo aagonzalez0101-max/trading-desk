@@ -17,7 +17,8 @@ F = os.path.join(ROOT, "results", "trades.jsonl")
 # Phase 2 arena records live in their own file: the GitHub Action writes and commits it, so it never collides with this
 # machine's trades.jsonl. Write with `with ledger.using(PHASE2): ...`; summary()/realized() read both.
 PHASE2 = os.path.join(ROOT, "results", "phase2_trades.jsonl")
-_ALL = [F, PHASE2]
+PROPS = os.path.join(ROOT, "results", "props_trades.jsonl")          # pm_props_scan (its own GitHub job -> its own file, no merge fights)
+_ALL = [F, PHASE2, PROPS]
 
 
 class using:

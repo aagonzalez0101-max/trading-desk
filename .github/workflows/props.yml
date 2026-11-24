@@ -1,0 +1,51 @@
+# POLYMARKET NFL PROPS SCANNER (paper) -- strategies/pm_props_scan.py: every 10 min, real Polymarket prop order books vs Pinnacle + FanDuel
+# lines; logs every matched row to collected/props/ and paper-bets when the real ask beats the sharp fair by >= 3c after fee.
+# Paper only (no keys). Each run loops ~5.6h, commits once, then starts its own next run (GitHub cron was unreliable here).
+name: props-scanner
+run-name: props-scanner
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "29 */6 * * *"       # backup only
+  push:
+    branches: [main]
+    paths: [".github/workflows/props.yml", "strategies/pm_props_scan.py"]
+
+concurrency:
+  group: props-scanner
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      GH_TOKEN: ${{ github.token }}
+      NOTIFY_JSON: ${{ secrets.NOTIFY_JSON }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: notify.json from secret (optional; never committed)
+        run: if [ -n "$NOTIFY_JSON" ]; then printf '%s' "$NOTIFY_JSON" > notify.json; fi
+      - name: Scan every 10 minutes for ~5.6 hours
+        run: python -m strategies.pm_props_scan run 330
+      - name: Commit the data and paper trades
+        if: always()
+        run: |
+          git config user.name "trading-desk-bot"
+          git config user.email "trading-desk-bot@users.noreply.github.com"
+          git add collected/props results/props_trades.jsonl 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "props scan: $(date -u +'%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3 4 5; do git pull --rebase && git push && break; sleep 10; done
+      - name: Start the next scanner run
+        if: always()
+        run: gh workflow run props.yml --ref main
