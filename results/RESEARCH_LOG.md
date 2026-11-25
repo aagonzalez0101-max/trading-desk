@@ -36,3 +36,16 @@ network access -> "Full" or a custom allowlist).
 **Fix needed to get research moving:** allow the data hosts (gamma-api.polymarket.com, clob.polymarket.com, data-api.polymarket.com,
 api.elections.kalshi.com, guest.api.arcadia.pinnacle.com, query1.finance.yahoo.com, api.coinbase.com, open-meteo.com) in the
 environment's network settings (claude.ai/code -> environment -> network access). Until then this routine can only do health checks.
+
+## 2026-11-25 (Wed, 7am CT run) -- nothing testable: cloud network still blocked (3rd day)
+
+| Item | Result |
+|---|---|
+| Next queue item (K3 NBA/NHL period totals vs Pinnacle) | **NOT RUN.** Polymarket, Kalshi, Yahoo and Coinbase all return no connection from this sandbox (checked again today). No test without data, so no PLANNED row added. |
+| PM-7 collector health | **Healthy.** 1,178 distinct 2-min passes, 11/22 20:17 UTC -> 11/25 11:48 UTC. No gap over 30 min since 11/24 02:12 UTC (the two earlier gaps are the known first-day and rebase-conflict ones). 3 weeks of data lands around 12/13-12/15; test then. |
+| Phase 2 sleeve | `phase2_equity.csv` updated through 11/24 (both accounts ~flat: $500 sleeve $449.95 of $450, $10k sleeve $8,996 of $9,000). Workflow is running. |
+| props scanner | Committing every ~10 min (latest 11/25 13:08 UTC). |
+
+**Still needed to get research moving:** allow the data hosts (gamma-api.polymarket.com, clob.polymarket.com, data-api.polymarket.com,
+api.elections.kalshi.com, guest.api.arcadia.pinnacle.com, query1.finance.yahoo.com, api.coinbase.com, open-meteo.com) in the
+environment's network settings. Until then this routine only does health checks.
