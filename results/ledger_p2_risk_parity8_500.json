@@ -1,0 +1,124 @@
+{
+ "name": "p2_risk_parity8_500",
+ "start": 450.0,
+ "cycle": 1,
+ "cycle_started": "2026-11-24",
+ "cash": 0.11000084608005523,
+ "positions": {
+  "VNQ": {
+   "qty": 0.560206052,
+   "avg": 93.18
+  },
+  "EFA": {
+   "qty": 0.48880785899999996,
+   "avg": 98.73
+  },
+  "TLT": {
+   "qty": 0.928169358,
+   "avg": 81.72
+  },
+  "GLD": {
+   "qty": 0.09501402499999999,
+   "avg": 331.53
+  },
+  "QQQ": {
+   "qty": 0.042022447,
+   "avg": 640.61
+  },
+  "IEF": {
+   "qty": 1.417874659,
+   "avg": 91.75
+  },
+  "DBC": {
+   "qty": 1.491595197,
+   "avg": 29.15
+  },
+  "SPY": {
+   "qty": 0.058152379,
+   "avg": 715.19
+  }
+ },
+ "fills": [
+  {
+   "time": "2026-11-24T14:30:00.733696Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "VNQ",
+   "qty": 0.560206052,
+   "price": 93.18,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  },
+  {
+   "time": "2026-11-24T14:30:00.269657Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "EFA",
+   "qty": 0.48880785899999996,
+   "price": 98.73,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  },
+  {
+   "time": "2026-11-24T14:30:01.047911Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "TLT",
+   "qty": 0.928169358,
+   "price": 81.72,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  },
+  {
+   "time": "2026-11-24T14:30:00.373362Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "GLD",
+   "qty": 0.09501402499999999,
+   "price": 331.53,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  },
+  {
+   "time": "2026-11-24T14:30:00.771786Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "QQQ",
+   "qty": 0.042022447,
+   "price": 640.61,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  },
+  {
+   "time": "2026-11-24T14:30:01.073518Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "IEF",
+   "qty": 1.417874659,
+   "price": 91.75,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  },
+  {
+   "time": "2026-11-24T14:30:00.067255Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "DBC",
+   "qty": 1.491595197,
+   "price": 29.15,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  },
+  {
+   "time": "2026-11-24T14:30:00.436098Z",
+   "cycle": 1,
+   "tag": "STRATEGY",
+   "symbol": "SPY",
+   "qty": 0.058152379,
+   "price": 715.19,
+   "realized": 0.0,
+   "why": "monthly rebalance 2026-10 (order filled)"
+  }
+ ],
+ "cycles": []
+}
